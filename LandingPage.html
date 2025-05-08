@@ -3,46 +3,54 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Activity Hub Landing Page</title>
+  <title>Activity Hub Company</title>
 
-  <!-- Tailwind CSS CDN -->
+  <!-- Tailwind CSS + Aspect-Ratio Plugin -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Enable aspect-ratio plugin -->
   <script>
     tailwind.config = {
       plugins: [require('@tailwindcss/aspect-ratio')],
     }
   </script>
 
-  <!-- Font Awesome Free CDN -->
+  <!-- Font Awesome -->
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
     crossorigin="anonymous"
     referrerpolicy="no-referrer"
   />
 </head>
+<body class="font-sans text-gray-900 leading-relaxed bg-white">
 
-<body class="font-sans text-gray-900 leading-relaxed">
+  <!-- FIXED NAVBAR -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200 shadow-sm">
+    <div class="container mx-auto px-4 max-w-7xl flex items-center justify-between h-20">
+      <!-- Combined Logo -->
+      <a href="https://activity-hub-official.github.io/Company/LandingPage.html">
+        <img src="https://i.imgur.com/T28QHq2.png" alt="Activity Hub Logo" class="h-16 sm:h-20">
+      </a>
 
-  <!-- HEADER -->
-  <header class="bg-white border-b border-gray-200">
-    <div class="container mx-auto px-4 max-w-7xl flex flex-col sm:flex-row items-center justify-between py-4">
-      <div class="flex items-center space-x-3 mb-4 sm:mb-0">
-        <img src="https://i.imgur.com/y6cVSp9.png" alt="Activity Hub Logo" class="h-8 sm:h-10">
-        <span class="text-xl sm:text-2xl font-bold text-gray-800">Activity Hub</span>
-      </div>
-      <nav aria-label="Primary" class="flex flex-wrap justify-center space-x-4 text-gray-800 font-semibold text-sm sm:text-base">
-        <a href="#" class="hover:text-blue-600">Home</a>
-        <a href="https://sites.google.com/view/testing-grounds-project/explore" class="hover:text-blue-600">Explore</a>
-        <a href="#" class="hover:text-blue-600">About</a>
-        <a href="#" class="hover:text-blue-600">Help</a>
+      <!-- Nav Links -->
+      <nav class="hidden sm:flex space-x-6 text-gray-800 font-medium text-sm sm:text-base">
+        <a href="https://activity-hub-official.github.io/Company/LandingPage.html" class="hover:text-blue-600 border-b-2 border-blue-600 pb-1">Company</a>
+        <a href="https://activity-hub-official.github.io/Company/About.html" class="hover:text-blue-600">About</a>
+        <a href="https://activity-hub-official.github.io/Company/Careers.html" class="hover:text-blue-600">Careers</a>
+        <a href="https://activity-hub-official.github.io/Company/News.html" class="hover:text-blue-600">News</a>
       </nav>
+
+      <!-- CTA -->
+      <a href="https://activity-hub-official.github.io/Company/Beta-Testing.html"
+         class="ml-4 inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-full text-sm sm:text-base">
+        Visit Activity Hub
+      </a>
     </div>
   </header>
 
-  <!-- HERO SECTION -->
+  <!-- SPACER -->
+  <div class="h-20"></div>
+
+  <!-- HERO -->
   <section class="bg-blue-600 text-white py-12 sm:py-16">
     <div class="container mx-auto px-4 max-w-7xl flex flex-col md:flex-row items-center md:justify-between">
       <div class="w-full md:w-1/2 mb-8 md:mb-0">
@@ -51,29 +59,27 @@
           Discover communities, share activities, and connect with like-minded people. Whether you’re into clubs, events, or collaborative projects—Activity Hub has a space for you.
         </p>
         <a
-          href="https://sites.google.com/view/testing-grounds-project/explore"
+          href="https://activity-hub-official.github.io/Company/Beta-Testing.html"
           class="inline-flex items-center bg-white text-blue-600 font-bold px-5 py-2 rounded-lg hover:bg-blue-100 transition text-sm sm:text-base"
         >
           <i class="fa-solid fa-arrow-right mr-2"></i>Visit Activity Hub
         </a>
       </div>
-      <div class="w-full md:w-1/2">
-        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 justify-items-center">
-          <img src="https://i.imgur.com/QynPp33.png" alt="Icon 1" class="w-16 h-16 rounded-lg shadow-lg">
-          <img src="https://i.imgur.com/jIvExM7.png" alt="Icon 2" class="w-16 h-16 rounded-lg shadow-lg">
-          <img src="https://i.imgur.com/An9OepP.png" alt="Icon 3" class="w-16 h-16 rounded-lg shadow-lg">
-          <img src="https://i.imgur.com/h9W7Am6.png" alt="Icon 4" class="w-16 h-16 rounded-lg shadow-lg">
-          <img src="https://i.imgur.com/BeZfAOz.png" alt="Icon 5" class="w-16 h-16 rounded-lg shadow-lg">
-          <img src="https://i.imgur.com/sgZQ5wO.png" alt="Icon 6" class="w-16 h-16 rounded-lg shadow-lg">
-        </div>
+      <div class="w-full md:w-1/2 grid grid-cols-2 sm:grid-cols-3 gap-4 justify-items-center">
+        <img src="https://i.imgur.com/QynPp33.png" alt="Icon 1" class="w-16 h-16 rounded-lg shadow-lg">
+        <img src="https://i.imgur.com/jIvExM7.png" alt="Icon 2" class="w-16 h-16 rounded-lg shadow-lg">
+        <img src="https://i.imgur.com/An9OepP.png" alt="Icon 3" class="w-16 h-16 rounded-lg shadow-lg">
+        <img src="https://i.imgur.com/h9W7Am6.png" alt="Icon 4" class="w-16 h-16 rounded-lg shadow-lg">
+        <img src="https://i.imgur.com/BeZfAOz.png" alt="Icon 5" class="w-16 h-16 rounded-lg shadow-lg">
+        <img src="https://i.imgur.com/sgZQ5wO.png" alt="Icon 6" class="w-16 h-16 rounded-lg shadow-lg">
       </div>
     </div>
   </section>
 
-  <!-- VIDEO OVERVIEW SECTION -->
+  <!-- VIDEO OVERVIEW -->
   <section class="py-12 bg-white">
     <div class="container mx-auto px-4 max-w-7xl grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-      <div class="relative group cursor-pointer overflow-hidden rounded-lg shadow-lg" id="video-thumbnail">
+      <div id="video-thumbnail" class="relative group cursor-pointer overflow-hidden rounded-lg shadow-lg">
         <img
           src="https://i.imgur.com/EjuUdID.png"
           alt="Video thumbnail"
@@ -92,7 +98,7 @@
     </div>
   </section>
 
-  <!-- KEY FEATURES SECTION -->
+  <!-- KEY FEATURES -->
   <section class="bg-blue-50 py-12">
     <div class="container mx-auto px-4 max-w-7xl text-center">
       <h2 class="text-2xl sm:text-3xl font-semibold mb-4">Key Features</h2>
@@ -117,7 +123,7 @@
     </div>
   </section>
 
-  <!-- BY THE NUMBERS SECTION -->
+  <!-- BY THE NUMBERS -->
   <section class="bg-gray-900 text-white py-12 sm:py-16">
     <div class="container mx-auto px-4 max-w-4xl text-center">
       <h2 class="text-2xl sm:text-3xl font-semibold mb-4">Activity Hub by the numbers</h2>
@@ -143,7 +149,7 @@
         </div>
       </div>
       <a
-        href="https://sites.google.com/view/testing-grounds-project/explore"
+        href="https://activity-hub-official.github.io/Company/Beta-Testing.html"
         class="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 sm:px-6 sm:py-3 rounded-lg transition text-sm sm:text-base"
       >
         <i class="fa-solid fa-rocket mr-2"></i>Get Started
@@ -151,7 +157,7 @@
     </div>
   </section>
 
-  <!-- NEWS SECTION -->
+  <!-- NEWS -->
   <section class="bg-gray-800 text-white py-12 sm:py-16">
     <div class="container mx-auto px-4 max-w-4xl text-center">
       <h2 class="text-2xl sm:text-3xl font-semibold mb-4">Activity Hub news</h2>
@@ -166,10 +172,10 @@
         <div>
           <h4 class="text-lg font-semibold mb-2">Company</h4>
           <ul class="space-y-2">
-            <li><a href="#" class="flex items-center text-gray-700 hover:text-blue-600"><i class="fa-solid fa-chevron-right mr-2"></i>About</a></li>
-            <li><a href="#" class="flex items-center text-gray-700 hover:text-blue-600"><i class="fa-solid fa-chevron-right mr-2"></i>Careers</a></li>
-            <li><a href="#" class="flex items-center text-gray-700 hover:text-blue-600"><i class="fa-solid fa-chevron-right mr-2"></i>Press</a></li>
-            <li><a href="#" class="flex items-center text-gray-700 hover:text-blue-600"><i class="fa-solid fa-chevron-right mr-2"></i>Advertise</a></li>
+            <li><a href="https://activity-hub-official.github.io/Company/About.html" class="flex items-center text-gray-700 hover:text-blue-600"><i class="fa-solid fa-chevron-right mr-2"></i>About</a></li>
+            <li><a href="https://activity-hub-official.github.io/Company/Careers.html" class="flex items-center text-gray-700 hover:text-blue-600"><i class="fa-solid fa-chevron-right mr-2"></i>Careers</a></li>
+            <li><a href="https://activity-hub-official.github.io/Company/News.html" class="flex items-center text-gray-700 hover:text-blue-600"><i class="fa-solid fa-chevron-right mr-2"></i>News</a></li>
+            <li><a href="https://activity-hub-official.github.io/Company/LandingPage.html" class="flex items-center text-gray-700 hover:text-blue-600"><i class="fa-solid fa-chevron-right mr-2"></i>Company</a></li>
           </ul>
         </div>
         <div>
@@ -198,23 +204,21 @@
   <!-- VIDEO OVERLAY -->
   <div
     id="video-overlay"
-    class="fixed inset-0 bg-black bg-opacity-75 flex flex-col items-center justify-center p-4 hidden"
+    class="fixed inset-0 z-50 bg-black bg-opacity-75 flex items-center justify-center p-4 hidden"
   >
-    <div class="flex justify-end w-full max-w-4xl mb-4">
-      <button
-        id="close-video"
-        class="text-white text-3xl hover:text-red-500"
-      >&times;</button>
-    </div>
-    <div class="aspect-w-16 aspect-h-9 w-full max-w-4xl">
+    <button
+      id="close-video"
+      class="absolute top-4 right-4 text-white text-3xl hover:text-red-500"
+    >&times;</button>
+    <div class="w-full max-w-4xl max-h-[90vh] aspect-video">
       <iframe
         id="video-frame"
         data-src="https://www.youtube.com/embed/YpzgNSZWZpE?autoplay=1"
+        class="w-full h-full rounded-lg"
         title="Landing Page Video"
         frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowfullscreen
-        class="w-full h-full rounded-lg"
       ></iframe>
     </div>
   </div>
@@ -226,7 +230,7 @@
     const frame = document.getElementById('video-frame');
 
     function openOverlay() {
-      frame.src = frame.dataset-src;
+      frame.src = frame.dataset.src;
       overlay.classList.remove('hidden');
     }
     function closeOverlay() {
