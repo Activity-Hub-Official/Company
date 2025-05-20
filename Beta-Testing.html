@@ -16,13 +16,13 @@
 <body class="bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-100">
 
   <!-- Navbar -->
-  <header class="fixed top-0 left-0 right-0 h-16 bg-white dark:bg-gray-800 shadow flex items-center px-4 z-50">
-    <button id="toggleBtn" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white mr-4">
+  <header class="fixed top-0 left-0 right-0 h-16 bg-white dark:bg-gray-800 shadow flex items-center px-4 sm:px-6 z-50">
+    <button id="toggleBtn" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white mr-4 focus:outline-none sm:hidden">
       <i class="fas fa-bars fa-lg"></i>
     </button>
-    <img src="https://i.imgur.com/T28QHq2.png" alt="Activity Hub Logo" class="h-14 w-auto"/>
-    <div id="authContainer" class="ml-auto flex items-center space-x-4">
-      <button id="signInBtn" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+    <img src="https://i.imgur.com/T28QHq2.png" alt="Activity Hub Logo" class="h-10 sm:h-14 w-auto"/>
+    <div id="authContainer" class="ml-auto flex items-center space-x-4 text-xs sm:text-sm">
+      <button id="signInBtn" class="bg-blue-600 text-white px-3 py-1.5 rounded hover:bg-blue-700">
         Sign In / Up
       </button>
     </div>
@@ -30,47 +30,47 @@
 
   <div class="flex pt-16">
     <!-- Sidebar -->
-    <aside id="sidebar" class="fixed top-16 left-0 bottom-0 bg-white dark:bg-gray-800 shadow-lg w-48 transition-all duration-300 overflow-hidden z-40">
+    <aside id="sidebar" class="fixed top-16 left-0 bottom-0 bg-white dark:bg-gray-800 shadow-lg w-0 sm:w-48 overflow-hidden transition-width duration-300 z-40">
       <nav class="mt-4 px-2">
         <ul class="space-y-2">
-          <li class="flex items-center gap-3 p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded cursor-pointer font-semibold">
-            <i class="fas fa-compass w-6 text-center"></i><span>Explore</span>
+          <li class="flex items-center gap-3 p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded cursor-pointer font-semibold text-sm">
+            <i class="fas fa-compass w-6 text-center"></i><span class="hidden sm:inline">Explore</span>
           </li>
           <li><hr class="border-gray-300 dark:border-gray-600 my-2"></li>
-          <li class="flex items-center gap-3 p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded cursor-pointer font-semibold">
-            <i class="fas fa-users w-6 text-center"></i><span>Clubs</span>
+          <li class="flex items-center gap-3 p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded cursor-pointer font-semibold text-sm">
+            <i class="fas fa-users w-6 text-center"></i><span class="hidden sm:inline">Clubs</span>
           </li>
-          <li class="flex items-center gap-3 p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded cursor-pointer font-semibold">
-            <i class="fas fa-briefcase w-6 text-center"></i><span>Businesses</span>
+          <li class="flex items-center gap-3 p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded cursor-pointer font-semibold text-sm">
+            <i class="fas fa-briefcase w-6 text-center"></i><span class="hidden sm:inline">Businesses</span>
           </li>
-          <li class="flex items-center gap-3 p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded cursor-pointer font-semibold">
-            <i class="fas fa-project-diagram w-6 text-center"></i><span>Projects</span>
+          <li class="flex items-center gap-3 p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded cursor-pointer font-semibold text-sm">
+            <i class="fas fa-project-diagram w-6 text-center"></i><span class="hidden sm:inline">Projects</span>
           </li>
-          <li class="flex items-center gap-3 p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded cursor-pointer font-semibold">
-            <i class="fas fa-user-friends w-6 text-center"></i><span>People</span>
+          <li class="flex items-center gap-3 p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded cursor-pointer font-semibold text-sm">
+            <i class="fas fa-user-friends w-6 text-center"></i><span class="hidden sm:inline">People</span>
           </li>
-          <li class="flex items-center gap-3 p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded cursor-pointer font-semibold">
-            <i class="fas fa-calendar-alt w-6 text-center"></i><span>Events</span>
+          <li class="flex items-center gap-3 p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded cursor-pointer font-semibold text-sm">
+            <i class="fas fa-calendar-alt w-6 text-center"></i><span class="hidden sm:inline">Events</span>
           </li>
         </ul>
       </nav>
       <!-- Dark mode toggle -->
       <div class="absolute bottom-4 w-full px-4">
-        <div class="flex items-center">
+        <div class="flex items-center text-sm">
           <i id="darkIcon" class="fas fa-moon text-gray-600 dark:text-gray-300"></i>
-          <span class="ml-2 text-sm font-bold">Dark Mode</span>
-          <label for="darkToggle" class="ml-auto relative inline-block w-10 h-6 cursor-pointer">
+          <span class="ml-2 hidden sm:inline">Dark Mode</span>
+          <label for="darkToggle" class="ml-auto relative inline-block w-8 h-5 cursor-pointer">
             <input id="darkToggle" type="checkbox" class="sr-only peer"/>
-            <div class="w-10 h-6 bg-gray-300 rounded-full peer-checked:bg-blue-600 transition-colors"></div>
-            <div class="absolute top-1 left-1 w-4 h-4 bg-white rounded-full peer-checked:translate-x-4 transition-transform"></div>
+            <div class="w-8 h-5 bg-gray-300 rounded-full peer-checked:bg-blue-600 transition-colors"></div>
+            <div class="absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full peer-checked:translate-x-3 transition-transform"></div>
           </label>
         </div>
       </div>
     </aside>
 
     <!-- Main Content -->
-    <div id="main" class="flex-1 ml-48 transition-all duration-300">
-      <main id="content" class="max-w-7xl mx-auto px-4 py-6"></main>
+    <div id="main" class="flex-1 ml-0 sm:ml-48 transition-margin duration-300">
+      <main id="content" class="max-w-7xl mx-auto px-4 py-6 sm:px-6 sm:py-8"></main>
     </div>
   </div>
 
@@ -86,19 +86,19 @@
   <template id="card-template">
     <div class="card bg-white dark:bg-gray-800 rounded-2xl shadow hover:shadow-lg dark:hover:shadow-xl transition p-4 flex flex-col cursor-pointer">
       <div class="flex items-center mb-2">
-        <img class="h-8 w-8 object-cover rounded mr-2 border border-gray-200 dark:border-gray-700" src="" alt="Logo"/>
-        <h3 class="text-lg font-semibold flex-1"></h3>
+        <img class="h-8 w-8 sm:h-10 sm:w-10 object-cover rounded mr-2 border border-gray-200 dark:border-gray-700" src="" alt="Logo"/>
+        <h3 class="text-lg sm:text-xl font-semibold flex-1"></h3>
       </div>
-      <p class="text-sm text-gray-600 dark:text-gray-300 mb-4 line-clamp-2 tagline"></p>
-      <div class="flex flex-wrap gap-2 mb-4">
-        <span class="business-type bg-teal-100 dark:bg-teal-900 text-teal-800 dark:text-teal-200 text-xs font-medium px-2.5 py-0.5 rounded"></span>
-        <span class="industry bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs font-medium px-2.5 py-0.5 rounded"></span>
-        <span class="stage bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-xs font-medium px-2.5 py-0.5 rounded"></span>
+      <p class="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-4 line-clamp-2 tagline"></p>
+      <div class="flex flex-wrap gap-2 mb-4 text-xs sm:text-sm">
+        <span class="business-type bg-teal-100 dark:bg-teal-900 text-teal-800 dark:text-teal-200 px-2 py-0.5 rounded"></span>
+        <span class="industry bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-0.5 rounded"></span>
+        <span class="stage bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-2 py-0.5 rounded"></span>
       </div>
-      <div class="flex items-center text-xs text-gray-500 dark:text-gray-400 mt-auto">
+      <div class="flex items-center text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-auto">
         <i class="fas fa-map-marker-alt mr-1"></i>
         <span class="school mr-4"></span>
-        <i class="fas fa-circle text-green-500 dark:text-green-400 text-[0.5rem] mr-1"></i>
+        <i class="fas fa-circle text-green-500 dark:text-green-400 text-[0.5rem] sm:text-[0.625rem] mr-1"></i>
         <span class="members mr-1"></span> Members
       </div>
     </div>
@@ -106,8 +106,8 @@
 
   <!-- Details Modal Template -->
   <template id="details-modal-template">
-    <div class="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg max-w-lg w-full p-6 relative">
+    <div class="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg p-6 relative">
         <button class="absolute top-3 right-3 text-2xl text-gray-500 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white close-modal">&times;</button>
         <div class="flex items-center mb-4">
           <img class="h-16 w-16 object-cover rounded mr-3 border border-gray-200 dark:border-gray-700 details-logo" src="" alt="Logo">
@@ -117,39 +117,36 @@
           </div>
         </div>
         <p class="text-sm text-gray-600 dark:text-gray-400 mb-2 italic details-tagline"></p>
-        <div class="flex space-x-4 mb-4">
-          <a id="modal-join-btn" class="text-white text-sm font-medium px-3 py-1 rounded bg-blue-600 hover:bg-blue-700" target="_blank">Join</a>
+        <div class="flex space-x-4 mb-4 flex-wrap">
+          <a id="modal-join-btn" class="text-white text-sm sm:text-base font-medium px-3 py-1 rounded bg-blue-600 hover:bg-blue-700" target="_blank">Join</a>
           <div id="socials-container" class="relative inline-block text-left">
-            <button id="socials-btn" class="bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 text-sm font-medium px-3 py-1 rounded">
+            <button id="socials-btn" class="bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 text-sm sm:text-base font-medium px-3 py-1 rounded">
               Socials <i class="fas fa-caret-down ml-1"></i>
             </button>
             <div id="socials-menu" class="invisible opacity-0 transition-opacity duration-200 absolute right-0 mt-2 w-48 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded shadow-lg z-50"></div>
           </div>
-          <button id="contact-info-btn" class="bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 text-sm font-medium px-3 py-1 rounded">Contact Info</button>
+          <button id="contact-info-btn" class="bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 text-sm sm:text-base font-medium px-3 py-1 rounded">Contact Info</button>
         </div>
-        <!-- Tabs -->
         <div class="border-b border-gray-200 dark:border-gray-700 mb-4 relative">
           <nav id="tab-nav" class="flex space-x-4">
-            <button class="tab-button pb-2 px-3 text-sm font-medium text-gray-500 dark:text-gray-400 focus:outline-none" data-tab="overview">Overview</button>
-            <button class="tab-button pb-2 px-3 text-sm font-medium text-gray-500 dark:text-gray-400 focus:outline-none" data-tab="events">Events</button>
+            <button class="tab-button pb-2 px-3 text-sm sm:text-base font-medium text-gray-500 dark:text-gray-400 focus:outline-none" data-tab="overview">Overview</button>
+            <button class="tab-button pb-2 px-3 text-sm sm:text-base font-medium text-gray-500 dark:text-gray-400 focus:outline-none" data-tab="events">Events</button>
           </nav>
           <div id="tab-underline" class="absolute bottom-0 h-0.5 bg-blue-600 transition-all"></div>
         </div>
-        <!-- Overview -->
         <div id="overview" class="tab-content">
           <p class="text-gray-700 dark:text-gray-300 mb-4 details-desc"></p>
-          <div class="flex flex-wrap gap-2 mb-4">
-            <span class="details-businesstype bg-teal-100 dark:bg-teal-900 text-teal-800 dark:text-teal-200 text-xs font-medium px-2.5 py-0.5 rounded"></span>
-            <span class="details-stage bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-xs font-medium px-2.5 py-0.5 rounded"></span>
+          <div class="flex flex-wrap gap-2 mb-4 text-xs sm:text-sm">
+            <span class="details-businesstype bg-teal-100 dark:bg-teal-900 text-teal-800 dark:text-teal-200 px-2 py-0.5 rounded"></span>
+            <span class="details-stage bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-2 py-0.5 rounded"></span>
           </div>
-          <div class="space-y-2 mb-4">
+          <div class="space-y-2 mb-4 text-xs sm:text-sm">
             <p class="flex items-center"><i class="fas fa-map-marker-alt mr-2 text-gray-600 dark:text-gray-400"></i><span class="details-school"></span></p>
             <p class="flex items-center"><i class="fas fa-users mr-1 text-gray-600 dark:text-gray-400"></i><span class="details-members mr-1"></span> Members</p>
           </div>
-          <p class="flex items-center"><i class="fas fa-comments mr-2 text-gray-600 dark:text-gray-400"></i><span class="details-comments">No comments yet</span></p>
+          <p class="flex items-center text-xs sm:text-sm"><i class="fas fa-comments mr-2 text-gray-600 dark:text-gray-400"></i><span class="details-comments">No comments yet</span></p>
         </div>
-        <!-- Events -->
-        <div id="events" class="tab-content hidden p-4 text-gray-600 dark:text-gray-400">
+        <div id="events" class="tab-content hidden p-4 text-gray-600 dark:text-gray-400 text-sm sm:text-base">
           No events yet
         </div>
       </div>
@@ -158,29 +155,29 @@
 
   <!-- Contact Modal Template -->
   <template id="contact-modal-template">
-    <div class="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg max-w-sm w-full p-6 relative">
+    <div class="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg w-full max-w-xs sm:max-w-sm md:max-w-md p-6 relative">
         <button class="absolute top-3 right-3 text-2xl text-gray-500 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white close-contact-modal">&times;</button>
-        <h3 class="text-xl font-semibold mb-4">Contact Information</h3>
-        <p><strong>Email:</strong> <a href="#" class="contact-email text-blue-600 dark:text-blue-400 hover:underline"></a></p>
-        <p class="mt-2"><strong>Form:</strong> <a href="#" class="contact-form text-blue-600 dark:text-blue-400 hover:underline" target="_blank"></a></p>
+        <h3 class="text-lg sm:text-xl font-semibold mb-4">Contact Information</h3>
+        <p class="text-sm sm:text-base"><strong>Email:</strong> <a href="#" class="contact-email text-blue-600 dark:text-blue-400 hover:underline"></a></p>
+        <p class="mt-2 text-sm sm:text-base"><strong>Form:</strong> <a href="#" class="contact-form text-blue-600 dark:text-blue-400 hover:underline" target="_blank"></a></p>
       </div>
     </div>
   </template>
 
-  <!-- Sign-In Modal Template -->
+  <!-- Sign In Modal Template -->
   <template id="signin-modal-template">
-    <div class="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg w-80 p-6 relative">
+    <div class="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg w-full max-w-xs sm:max-w-sm p-6 relative">
         <button id="close-signin" class="absolute top-3 right-3 text-2xl text-gray-500 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white">&times;</button>
-        <h3 class="text-xl font-semibold mb-4">Sign In</h3>
-        <form id="signin-form" class="space-y-4">
+        <h3 class="text-lg sm:text-xl font-semibold mb-4">Sign In</h3>
+        <form id="signin-form" class="space-y-4 text-sm sm:text-base">
           <div>
-            <label class="block text-sm font-medium mb-1">Email</label>
+            <label class="block font-medium mb-1">Email</label>
             <input id="signin-email" type="email" required class="w-full px-3 py-2 border rounded dark:bg-gray-700 dark:border-gray-600 focus:outline-none" placeholder="you@example.com"/>
           </div>
           <div>
-            <label class="block text-sm font-medium mb-1">Password</label>
+            <label class="block font-medium mb-1">Password</label>
             <input id="signin-password" type="password" required class="w-full px-3 py-2 border rounded dark:bg-gray-700 dark:border-gray-600 focus:outline-none" placeholder="••••••••"/>
           </div>
           <p id="signin-error" class="text-red-600 text-sm hidden">Invalid email or password.</p>
@@ -193,10 +190,10 @@
 
   <!-- Profile Dropdown Template -->
   <template id="profile-dropdown-template">
-    <div id="profileDropdown" class="absolute right-0 mt-2 w-40 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded shadow-lg py-2 z-50 hidden">
-      <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700">Profile</a>
-      <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700">Settings</a>
-      <a href="#" id="logoutBtn" class="block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700">Logout</a>
+    <div id="profileDropdown" class="absolute right-0 mt-2 w-40 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded shadow-lg py-2 z-50 hidden text-sm">
+      <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">Profile</a>
+      <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">Settings</a>
+      <a href="#" id="logoutBtn" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">Logout</a>
     </div>
   </template>
 
@@ -250,37 +247,35 @@
       const dsEl = modal.querySelector('.details-stage');
       if (item.Stage) dsEl.textContent = item.Stage; else dsEl.remove();
 
-      // Socials dropdown
+      // Socials
       const socialMap = {
         website:'Website', instagram:'Instagram', linkedin:'LinkedIn',
         youtube:'YouTube', tiktok:'TikTok', github:'GitHub', discord:'Discord',
         groupme:'GroupMe', twitter:'Twitter', linktree:'LinkTree'
       };
-      const menu = modal.querySelector('#socials-menu');
-      let count=0;
+      const menu = modal.querySelector('#socials-menu'); let count=0;
       Object.entries(socialMap).forEach(([_,label])=>{
         const url = item[label];
-        if(url){
+        if (url) {
           const a = document.createElement('a');
-          a.className='block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 text-sm';
+          a.className='block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600';
           a.href=url; a.target='_blank'; a.textContent=label;
           menu.append(a); count++;
         }
       });
-      if(!count) modal.querySelector('#socials-container').style.display='none';
+      if (!count) modal.querySelector('#socials-container').style.display='none';
 
-      // Join button
+      // Join & Contact
       const joinBtn = modal.querySelector('#modal-join-btn');
-      if(item["Join Form"]) joinBtn.href = item["Join Form"];
+      if (item["Join Form"]) joinBtn.href = item["Join Form"];
       else joinBtn.classList.add('bg-gray-400','cursor-not-allowed');
 
-      // Contact info
       const cbtn = modal.querySelector('#contact-info-btn');
-      if(item["Project Contact Email"]||item["Contact Form"]) {
+      if (item["Project Contact Email"]||item["Contact Form"]) {
         cbtn.addEventListener('click', e=>{ e.stopPropagation(); showContact(item); });
       } else cbtn.classList.add('opacity-50','cursor-not-allowed');
 
-      // Hover behavior
+      // Dropdown hover
       const sb = modal.querySelector('#socials-btn'), dd = menu; let to;
       [sb, dd].forEach(el=>{
         el.addEventListener('mouseenter', ()=>{ clearTimeout(to); dd.classList.remove('invisible','opacity-0'); });
@@ -290,7 +285,7 @@
       document.body.append(modal);
       modal.querySelector('.close-modal').onclick = ()=> modal.remove();
 
-      // Tabs underline
+      // Tabs
       const nav  = modal.querySelector('#tab-nav'),
             ul   = modal.querySelector('#tab-underline'),
             tabs = nav.querySelectorAll('.tab-button');
@@ -315,11 +310,11 @@
       const cm  = tpl.querySelector('.modal-overlay');
       const em  = cm.querySelector('.contact-email'),
             fm  = cm.querySelector('.contact-form');
-      if(item["Project Contact Email"]) {
+      if (item["Project Contact Email"]) {
         em.href = `mailto:${item["Project Contact Email"]}`;
         em.textContent = item["Project Contact Email"];
       }
-      if(item["Contact Form"]) {
+      if (item["Contact Form"]) {
         fm.href = item["Contact Form"];
         fm.textContent = 'Open Form';
       }
@@ -327,7 +322,7 @@
       cm.querySelector('.close-contact-modal').onclick = ()=> cm.remove();
     }
 
-    // Sign-In modal & profile menu
+    // Sign-In & Profile
     document.getElementById('signInBtn').addEventListener('click', ()=>{
       const tpl = document.getElementById('signin-modal-template').content.cloneNode(true);
       const m   = tpl.querySelector('.modal-overlay');
@@ -344,7 +339,7 @@
         errMsg.classList.add('hidden'); okMsg.classList.add('hidden');
         fetch(AUTH_API).then(r=>r.json()).then(users=>{
           const u = users.find(u=>u.Email===emailIn.value.trim()&&u.Password===passIn.value);
-          if(!u){ errMsg.classList.remove('hidden'); return; }
+          if (!u) { errMsg.classList.remove('hidden'); return; }
           okMsg.classList.remove('hidden');
           setTimeout(()=>{
             m.remove();
@@ -354,20 +349,18 @@
               <i class="fas fa-bell text-gray-600 dark:text-gray-300 mr-4 cursor-pointer"></i>
               <span class="font-medium mr-2">${u["First Name"]}</span>
               <div id="pfpContainer" class="relative">
-                <img id="pfpBtn" src="${u["Profile Picture"]}" alt="${u["First Name"]}"
-                     class="h-10 w-10 rounded-full border-2 border-gray-200 dark:border-gray-700 cursor-pointer"/>
+                <img id="pfpBtn" src="${u["Profile Picture"]}" alt="" class="h-10 w-10 rounded-full border-2 border-gray-200 dark:border-gray-700 cursor-pointer"/>
               </div>
+              <span id="currentUserId" class="hidden">${u["User ID"]}</span>
             `;
-            // profile dropdown
-            const ddTpl = document.getElementById('profile-dropdown-template').content.cloneNode(true);
             const pfc = document.getElementById('pfpContainer');
-            pfc.append(ddTpl);
-            const dd = document.getElementById('profileDropdown');
+            pfc.append(document.getElementById('profile-dropdown-template').content.cloneNode(true));
+            const dropdown = document.getElementById('profileDropdown');
             document.getElementById('pfpBtn').addEventListener('click', e=>{
               e.stopPropagation();
-              dd.classList.toggle('hidden');
+              dropdown.classList.toggle('hidden');
             });
-            document.addEventListener('click', ()=> dd.classList.add('hidden'));
+            document.addEventListener('click', ()=> dropdown.classList.add('hidden'));
             document.getElementById('logoutBtn').addEventListener('click', ()=> location.reload());
           }, 1000);
         }).catch(()=>{
@@ -376,18 +369,16 @@
       });
     });
 
-    // Sidebar collapse
+    // Sidebar toggle
     document.getElementById('toggleBtn').addEventListener('click', ()=>{
       const sb = document.getElementById('sidebar'),
             mn = document.getElementById('main');
-      if(sb.classList.contains('w-48')){
-        sb.classList.replace('w-48','w-16');
-        mn.classList.replace('ml-48','ml-16');
-        document.querySelectorAll('#sidebar span').forEach(s=>s.classList.add('hidden'));
+      if (sb.classList.contains('w-0')) {
+        sb.classList.replace('w-0','sm:w-48');
+        mn.classList.replace('ml-0','sm:ml-48');
       } else {
-        sb.classList.replace('w-16','w-48');
-        mn.classList.replace('ml-16','ml-48');
-        document.querySelectorAll('#sidebar span').forEach(s=>s.classList.remove('hidden'));
+        sb.classList.replace('sm:w-48','w-0');
+        mn.classList.replace('sm:ml-48','ml-0');
       }
     });
 
