@@ -2,97 +2,402 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Activity Hub Beta Access</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #2193b0, #6dd5ed);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-      color: #fff;
-    }
-    .container {
-      background-color: rgba(0, 0, 0, 0.25);
-      padding: 2.5rem 3rem;
-      border-radius: 12px;
-      text-align: center;
-      max-width: 400px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    }
-    h1 {
-      margin-bottom: 1rem;
-      font-size: 2rem;
-    }
-    p {
-      margin-bottom: 1.5rem;
-      font-size: 1rem;
-      opacity: 0.9;
-    }
-    input[type="password"] {
-      padding: 0.7rem;
-      width: 100%;
-      border: none;
-      border-radius: 6px;
-      margin-bottom: 1rem;
-      font-size: 1rem;
-    }
-    button {
-      background-color: #fff;
-      color: #2193b0;
-      border: none;
-      padding: 0.7rem 1.5rem;
-      border-radius: 6px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s;
-      font-size: 1rem;
-    }
-    button:hover {
-      background-color: #f0f0f0;
-    }
-    .error {
-      color: #ffcccb;
-      margin-top: 0.75rem;
-      font-size: 0.9rem;
-    }
-    .request-access {
-      margin-top: 1.5rem;
-      display: inline-block;
-      color: #fff;
-      text-decoration: underline;
-      cursor: pointer;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Activity Hub</title>
+  <!-- TailwindCSS with class-based dark mode -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class' }</script>
+  <!-- Font Awesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
 </head>
-<body>
-  <div class="container">
-    <h1>Private Beta Access</h1>
-    <p>Activity Hub is currently in closed beta for early student testers.</p>
-    <input type="password" id="passcode" placeholder="Enter passcode" />
-    <button onclick="checkPasscode()">Enter Beta</button>
-    <div id="error" class="error"></div>
-    <div class="request-access" onclick="alert('Please email hello@activityhub.io to request access.')">
-      Request Beta Access
+<body class="bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-100">
+
+  <!-- Navbar -->
+  <header class="fixed top-0 left-0 right-0 h-16 bg-white dark:bg-gray-800 shadow flex items-center px-4 z-50">
+    <button id="toggleBtn" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white mr-4">
+      <i class="fas fa-bars fa-lg"></i>
+    </button>
+    <img src="https://i.imgur.com/T28QHq2.png" alt="Activity Hub Logo" class="h-14 w-auto"/>
+    <div id="authContainer" class="ml-auto flex items-center space-x-4">
+      <button id="signInBtn" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+        Sign In / Up
+      </button>
+    </div>
+  </header>
+
+  <div class="flex pt-16">
+    <!-- Sidebar -->
+    <aside id="sidebar" class="fixed top-16 left-0 bottom-0 bg-white dark:bg-gray-800 shadow-lg w-48 transition-all duration-300 overflow-hidden z-40">
+      <nav class="mt-4 px-2">
+        <ul class="space-y-2">
+          <li class="flex items-center gap-3 p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded cursor-pointer font-semibold">
+            <i class="fas fa-compass w-6 text-center"></i><span>Explore</span>
+          </li>
+          <li><hr class="border-gray-300 dark:border-gray-600 my-2"></li>
+          <li class="flex items-center gap-3 p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded cursor-pointer font-semibold">
+            <i class="fas fa-users w-6 text-center"></i><span>Clubs</span>
+          </li>
+          <li class="flex items-center gap-3 p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded cursor-pointer font-semibold">
+            <i class="fas fa-briefcase w-6 text-center"></i><span>Businesses</span>
+          </li>
+          <li class="flex items-center gap-3 p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded cursor-pointer font-semibold">
+            <i class="fas fa-project-diagram w-6 text-center"></i><span>Projects</span>
+          </li>
+          <li class="flex items-center gap-3 p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded cursor-pointer font-semibold">
+            <i class="fas fa-user-friends w-6 text-center"></i><span>People</span>
+          </li>
+          <li class="flex items-center gap-3 p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded cursor-pointer font-semibold">
+            <i class="fas fa-calendar-alt w-6 text-center"></i><span>Events</span>
+          </li>
+        </ul>
+      </nav>
+      <!-- Dark mode toggle -->
+      <div class="absolute bottom-4 w-full px-4">
+        <div class="flex items-center">
+          <i id="darkIcon" class="fas fa-moon text-gray-600 dark:text-gray-300"></i>
+          <span class="ml-2 text-sm font-bold">Dark Mode</span>
+          <label for="darkToggle" class="ml-auto relative inline-block w-10 h-6 cursor-pointer">
+            <input id="darkToggle" type="checkbox" class="sr-only peer"/>
+            <div class="w-10 h-6 bg-gray-300 rounded-full peer-checked:bg-blue-600 transition-colors"></div>
+            <div class="absolute top-1 left-1 w-4 h-4 bg-white rounded-full peer-checked:translate-x-4 transition-transform"></div>
+          </label>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div id="main" class="flex-1 ml-48 transition-all duration-300">
+      <main id="content" class="max-w-7xl mx-auto px-4 py-6"></main>
     </div>
   </div>
 
+  <!-- Section Template -->
+  <template id="section-template">
+    <section class="mb-12">
+      <h2 class="text-2xl font-semibold mb-6"></h2>
+      <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3"></div>
+    </section>
+  </template>
+
+  <!-- Card Template -->
+  <template id="card-template">
+    <div class="card bg-white dark:bg-gray-800 rounded-2xl shadow hover:shadow-lg dark:hover:shadow-xl transition p-4 flex flex-col cursor-pointer">
+      <div class="flex items-center mb-2">
+        <img class="h-8 w-8 object-cover rounded mr-2 border border-gray-200 dark:border-gray-700" src="" alt="Logo"/>
+        <h3 class="text-lg font-semibold flex-1"></h3>
+      </div>
+      <p class="text-sm text-gray-600 dark:text-gray-300 mb-4 line-clamp-2 tagline"></p>
+      <div class="flex flex-wrap gap-2 mb-4">
+        <span class="business-type bg-teal-100 dark:bg-teal-900 text-teal-800 dark:text-teal-200 text-xs font-medium px-2.5 py-0.5 rounded"></span>
+        <span class="industry bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs font-medium px-2.5 py-0.5 rounded"></span>
+        <span class="stage bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-xs font-medium px-2.5 py-0.5 rounded"></span>
+      </div>
+      <div class="flex items-center text-xs text-gray-500 dark:text-gray-400 mt-auto">
+        <i class="fas fa-map-marker-alt mr-1"></i>
+        <span class="school mr-4"></span>
+        <i class="fas fa-circle text-green-500 dark:text-green-400 text-[0.5rem] mr-1"></i>
+        <span class="members mr-1"></span> Members
+      </div>
+    </div>
+  </template>
+
+  <!-- Details Modal Template -->
+  <template id="details-modal-template">
+    <div class="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg max-w-lg w-full p-6 relative">
+        <button class="absolute top-3 right-3 text-2xl text-gray-500 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white close-modal">&times;</button>
+        <div class="flex items-center mb-4">
+          <img class="h-16 w-16 object-cover rounded mr-3 border border-gray-200 dark:border-gray-700 details-logo" src="" alt="Logo">
+          <div>
+            <h3 class="text-2xl font-semibold details-title"></h3>
+            <span class="text-sm font-medium text-gray-600 dark:text-gray-400 details-industry"></span>
+          </div>
+        </div>
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-2 italic details-tagline"></p>
+        <div class="flex space-x-4 mb-4">
+          <a id="modal-join-btn" class="text-white text-sm font-medium px-3 py-1 rounded bg-blue-600 hover:bg-blue-700" target="_blank">Join</a>
+          <div id="socials-container" class="relative inline-block text-left">
+            <button id="socials-btn" class="bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 text-sm font-medium px-3 py-1 rounded">
+              Socials <i class="fas fa-caret-down ml-1"></i>
+            </button>
+            <div id="socials-menu" class="invisible opacity-0 transition-opacity duration-200 absolute right-0 mt-2 w-48 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded shadow-lg z-50"></div>
+          </div>
+          <button id="contact-info-btn" class="bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 text-sm font-medium px-3 py-1 rounded">Contact Info</button>
+        </div>
+        <!-- Tabs -->
+        <div class="border-b border-gray-200 dark:border-gray-700 mb-4 relative">
+          <nav id="tab-nav" class="flex space-x-4">
+            <button class="tab-button pb-2 px-3 text-sm font-medium text-gray-500 dark:text-gray-400 focus:outline-none" data-tab="overview">Overview</button>
+            <button class="tab-button pb-2 px-3 text-sm font-medium text-gray-500 dark:text-gray-400 focus:outline-none" data-tab="events">Events</button>
+          </nav>
+          <div id="tab-underline" class="absolute bottom-0 h-0.5 bg-blue-600 transition-all"></div>
+        </div>
+        <!-- Overview -->
+        <div id="overview" class="tab-content">
+          <p class="text-gray-700 dark:text-gray-300 mb-4 details-desc"></p>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="details-businesstype bg-teal-100 dark:bg-teal-900 text-teal-800 dark:text-teal-200 text-xs font-medium px-2.5 py-0.5 rounded"></span>
+            <span class="details-stage bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-xs font-medium px-2.5 py-0.5 rounded"></span>
+          </div>
+          <div class="space-y-2 mb-4">
+            <p class="flex items-center"><i class="fas fa-map-marker-alt mr-2 text-gray-600 dark:text-gray-400"></i><span class="details-school"></span></p>
+            <p class="flex items-center"><i class="fas fa-users mr-1 text-gray-600 dark:text-gray-400"></i><span class="details-members mr-1"></span> Members</p>
+          </div>
+          <p class="flex items-center"><i class="fas fa-comments mr-2 text-gray-600 dark:text-gray-400"></i><span class="details-comments">No comments yet</span></p>
+        </div>
+        <!-- Events -->
+        <div id="events" class="tab-content hidden p-4 text-gray-600 dark:text-gray-400">
+          No events yet
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <!-- Contact Modal Template -->
+  <template id="contact-modal-template">
+    <div class="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg max-w-sm w-full p-6 relative">
+        <button class="absolute top-3 right-3 text-2xl text-gray-500 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white close-contact-modal">&times;</button>
+        <h3 class="text-xl font-semibold mb-4">Contact Information</h3>
+        <p><strong>Email:</strong> <a href="#" class="contact-email text-blue-600 dark:text-blue-400 hover:underline"></a></p>
+        <p class="mt-2"><strong>Form:</strong> <a href="#" class="contact-form text-blue-600 dark:text-blue-400 hover:underline" target="_blank"></a></p>
+      </div>
+    </div>
+  </template>
+
+  <!-- Sign-In Modal Template -->
+  <template id="signin-modal-template">
+    <div class="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg w-80 p-6 relative">
+        <button id="close-signin" class="absolute top-3 right-3 text-2xl text-gray-500 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white">&times;</button>
+        <h3 class="text-xl font-semibold mb-4">Sign In</h3>
+        <form id="signin-form" class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium mb-1">Email</label>
+            <input id="signin-email" type="email" required class="w-full px-3 py-2 border rounded dark:bg-gray-700 dark:border-gray-600 focus:outline-none" placeholder="you@example.com"/>
+          </div>
+          <div>
+            <label class="block text-sm font-medium mb-1">Password</label>
+            <input id="signin-password" type="password" required class="w-full px-3 py-2 border rounded dark:bg-gray-700 dark:border-gray-600 focus:outline-none" placeholder="••••••••"/>
+          </div>
+          <p id="signin-error" class="text-red-600 text-sm hidden">Invalid email or password.</p>
+          <p id="signin-success" class="text-green-600 text-sm hidden">Login successful!</p>
+          <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">Sign In</button>
+        </form>
+      </div>
+    </div>
+  </template>
+
+  <!-- Profile Dropdown Template -->
+  <template id="profile-dropdown-template">
+    <div id="profileDropdown" class="absolute right-0 mt-2 w-40 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded shadow-lg py-2 z-50 hidden">
+      <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700">Profile</a>
+      <a href="#" class="block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700">Settings</a>
+      <a href="#" id="logoutBtn" class="block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700">Logout</a>
+    </div>
+  </template>
+
   <script>
-    const correctPasscode = "YOUR_SECRET_PASSCODE"; // change this!
+    const API      = 'https://sheet2api.com/v1/an4oVvpQR51V/mock-data-new';
+    const AUTH_API = 'https://sheet2api.com/v1/rkmbUqHQAC3C/submission-form-responses';
+    const content  = document.getElementById('content');
 
-    function checkPasscode() {
-      const input = document.getElementById("passcode").value;
-      const errorDiv = document.getElementById("error");
+    // Fetch & render listings
+    fetch(API)
+      .then(r => r.json())
+      .then(json => {
+        const titles = { 'Clubs & Orgs': 'Clubs', 'Business': 'Businesses', 'Other Projects': 'Projects' };
+        Object.keys(titles).forEach(type => {
+          const sec = document.getElementById('section-template').content.cloneNode(true);
+          sec.querySelector('h2').textContent = titles[type];
+          const grid = sec.querySelector('div');
+          json.filter(i => i["Project Type"] === type).forEach(item => {
+            const card = document.getElementById('card-template').content.cloneNode(true);
+            card.querySelector('img').src = item["Logo URL"];
+            card.querySelector('h3').textContent = item["Project Title"];
+            card.querySelector('.tagline').textContent = item.Tagline;
+            const btEl = card.querySelector('.business-type');
+            if (type==='Business' && item["Business Type"]) btEl.textContent = item["Business Type"];
+            else btEl.remove();
+            card.querySelector('.industry').textContent = item.Industry;
+            const stEl = card.querySelector('.stage');
+            if (item.Stage) stEl.textContent = item.Stage; else stEl.remove();
+            card.querySelector('.school').textContent  = item["College or University Name"];
+            card.querySelector('.members').textContent = item["Number of participants"];
+            card.querySelector('.card').addEventListener('click', () => showDetails(item));
+            grid.append(card);
+          });
+          content.append(sec);
+        });
+      })
+      .catch(console.error);
 
-      if (input === correctPasscode) {
-        window.location.href = "https://activityhub-demo.example.com"; // change this!
-      } else {
-        errorDiv.textContent = "Incorrect passcode. Please try again.";
-      }
+    function showDetails(item) {
+      const tpl   = document.getElementById('details-modal-template').content.cloneNode(true);
+      const modal = tpl.querySelector('.modal-overlay');
+      modal.querySelector('.details-logo').src       = item["Logo URL"];
+      modal.querySelector('.details-title').textContent    = item["Project Title"];
+      modal.querySelector('.details-industry').textContent = item.Industry;
+      modal.querySelector('.details-tagline').textContent  = item.Tagline;
+      modal.querySelector('.details-desc').textContent     = item.Description;
+      modal.querySelector('.details-school').textContent   = item["College or University Name"];
+      modal.querySelector('.details-members').textContent  = item["Number of participants"];
+      const btEl = modal.querySelector('.details-businesstype');
+      if (item["Business Type"]) btEl.textContent = item["Business Type"]; else btEl.remove();
+      const dsEl = modal.querySelector('.details-stage');
+      if (item.Stage) dsEl.textContent = item.Stage; else dsEl.remove();
+
+      // Socials dropdown
+      const socialMap = {
+        website:'Website', instagram:'Instagram', linkedin:'LinkedIn',
+        youtube:'YouTube', tiktok:'TikTok', github:'GitHub', discord:'Discord',
+        groupme:'GroupMe', twitter:'Twitter', linktree:'LinkTree'
+      };
+      const menu = modal.querySelector('#socials-menu');
+      let count=0;
+      Object.entries(socialMap).forEach(([_,label])=>{
+        const url = item[label];
+        if(url){
+          const a = document.createElement('a');
+          a.className='block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 text-sm';
+          a.href=url; a.target='_blank'; a.textContent=label;
+          menu.append(a); count++;
+        }
+      });
+      if(!count) modal.querySelector('#socials-container').style.display='none';
+
+      // Join button
+      const joinBtn = modal.querySelector('#modal-join-btn');
+      if(item["Join Form"]) joinBtn.href = item["Join Form"];
+      else joinBtn.classList.add('bg-gray-400','cursor-not-allowed');
+
+      // Contact info
+      const cbtn = modal.querySelector('#contact-info-btn');
+      if(item["Project Contact Email"]||item["Contact Form"]) {
+        cbtn.addEventListener('click', e=>{ e.stopPropagation(); showContact(item); });
+      } else cbtn.classList.add('opacity-50','cursor-not-allowed');
+
+      // Hover behavior
+      const sb = modal.querySelector('#socials-btn'), dd = menu; let to;
+      [sb, dd].forEach(el=>{
+        el.addEventListener('mouseenter', ()=>{ clearTimeout(to); dd.classList.remove('invisible','opacity-0'); });
+        el.addEventListener('mouseleave', ()=>{ to=setTimeout(()=>dd.classList.add('invisible','opacity-0'),300); });
+      });
+
+      document.body.append(modal);
+      modal.querySelector('.close-modal').onclick = ()=> modal.remove();
+
+      // Tabs underline
+      const nav  = modal.querySelector('#tab-nav'),
+            ul   = modal.querySelector('#tab-underline'),
+            tabs = nav.querySelectorAll('.tab-button');
+      tabs.forEach(t=>{
+        t.addEventListener('click', ()=>{
+          tabs.forEach(b=>{
+            b.classList.remove('text-blue-600');
+            b.classList.add('text-gray-500','dark:text-gray-400');
+          });
+          t.classList.add('text-blue-600');
+          ul.style.width = t.offsetWidth+'px';
+          ul.style.left  = t.offsetLeft+'px';
+          modal.querySelectorAll('.tab-content').forEach(c=>c.classList.add('hidden'));
+          modal.querySelector('#'+t.dataset.tab).classList.remove('hidden');
+        });
+      });
+      tabs[0].click();
     }
+
+    function showContact(item) {
+      const tpl = document.getElementById('contact-modal-template').content.cloneNode(true);
+      const cm  = tpl.querySelector('.modal-overlay');
+      const em  = cm.querySelector('.contact-email'),
+            fm  = cm.querySelector('.contact-form');
+      if(item["Project Contact Email"]) {
+        em.href = `mailto:${item["Project Contact Email"]}`;
+        em.textContent = item["Project Contact Email"];
+      }
+      if(item["Contact Form"]) {
+        fm.href = item["Contact Form"];
+        fm.textContent = 'Open Form';
+      }
+      document.body.append(cm);
+      cm.querySelector('.close-contact-modal').onclick = ()=> cm.remove();
+    }
+
+    // Sign-In modal & profile menu
+    document.getElementById('signInBtn').addEventListener('click', ()=>{
+      const tpl = document.getElementById('signin-modal-template').content.cloneNode(true);
+      const m   = tpl.querySelector('.modal-overlay');
+      document.body.append(m);
+      const form    = m.querySelector('#signin-form'),
+            emailIn = m.querySelector('#signin-email'),
+            passIn  = m.querySelector('#signin-password'),
+            errMsg  = m.querySelector('#signin-error'),
+            okMsg   = m.querySelector('#signin-success');
+      m.querySelector('#close-signin').onclick = ()=> m.remove();
+      m.addEventListener('click', e=>{ if(e.target.classList.contains('modal-overlay')) m.remove(); });
+      form.addEventListener('submit', e=>{
+        e.preventDefault();
+        errMsg.classList.add('hidden'); okMsg.classList.add('hidden');
+        fetch(AUTH_API).then(r=>r.json()).then(users=>{
+          const u = users.find(u=>u.Email===emailIn.value.trim()&&u.Password===passIn.value);
+          if(!u){ errMsg.classList.remove('hidden'); return; }
+          okMsg.classList.remove('hidden');
+          setTimeout(()=>{
+            m.remove();
+            const auth = document.getElementById('authContainer');
+            auth.innerHTML = `
+              <i class="fas fa-plus-circle text-gray-600 dark:text-gray-300 mr-4 cursor-pointer"></i>
+              <i class="fas fa-bell text-gray-600 dark:text-gray-300 mr-4 cursor-pointer"></i>
+              <span class="font-medium mr-2">${u["First Name"]}</span>
+              <div id="pfpContainer" class="relative">
+                <img id="pfpBtn" src="${u["Profile Picture"]}" alt="${u["First Name"]}"
+                     class="h-10 w-10 rounded-full border-2 border-gray-200 dark:border-gray-700 cursor-pointer"/>
+              </div>
+            `;
+            // profile dropdown
+            const ddTpl = document.getElementById('profile-dropdown-template').content.cloneNode(true);
+            const pfc = document.getElementById('pfpContainer');
+            pfc.append(ddTpl);
+            const dd = document.getElementById('profileDropdown');
+            document.getElementById('pfpBtn').addEventListener('click', e=>{
+              e.stopPropagation();
+              dd.classList.toggle('hidden');
+            });
+            document.addEventListener('click', ()=> dd.classList.add('hidden'));
+            document.getElementById('logoutBtn').addEventListener('click', ()=> location.reload());
+          }, 1000);
+        }).catch(()=>{
+          errMsg.textContent='Network error. Try again.'; errMsg.classList.remove('hidden');
+        });
+      });
+    });
+
+    // Sidebar collapse
+    document.getElementById('toggleBtn').addEventListener('click', ()=>{
+      const sb = document.getElementById('sidebar'),
+            mn = document.getElementById('main');
+      if(sb.classList.contains('w-48')){
+        sb.classList.replace('w-48','w-16');
+        mn.classList.replace('ml-48','ml-16');
+        document.querySelectorAll('#sidebar span').forEach(s=>s.classList.add('hidden'));
+      } else {
+        sb.classList.replace('w-16','w-48');
+        mn.classList.replace('ml-16','ml-48');
+        document.querySelectorAll('#sidebar span').forEach(s=>s.classList.remove('hidden'));
+      }
+    });
+
+    // Dark mode toggle
+    document.getElementById('darkToggle').addEventListener('change', e=>{
+      document.documentElement.classList.toggle('dark', e.target.checked);
+      const di = document.getElementById('darkIcon');
+      di.classList.toggle('fa-moon', !e.target.checked);
+      di.classList.toggle('fa-sun', e.target.checked);
+    });
   </script>
 </body>
 </html>
