@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Activity Hub</title>
-  <!-- TailwindCSS with class-based dark mode -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>tailwind.config = { darkMode: 'class' }</script>
-  <!-- Font Awesome -->
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -16,11 +14,11 @@
 <body class="bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-100">
 
   <!-- Navbar -->
-  <header class="fixed top-0 left-0 right-0 h-16 bg-white dark:bg-gray-800 shadow flex items-center px-4 sm:px-6 z-50">
-    <button id="toggleBtn" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white mr-4 focus:outline-none sm:hidden">
+  <header class="fixed top-0 left-0 right-0 h-16 bg-white dark:bg-gray-800 shadow flex items-center px-6 sm:px-8 z-50">
+    <button id="toggleBtn" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white mr-4 focus:outline-none">
       <i class="fas fa-bars fa-lg"></i>
     </button>
-    <img src="https://i.imgur.com/T28QHq2.png" alt="Activity Hub Logo" class="h-10 sm:h-14 w-auto"/>
+    <img src="https://i.imgur.com/T28QHq2.png" alt="Logo" class="h-10 sm:h-14"/>
     <div id="authContainer" class="ml-auto flex items-center space-x-4 text-xs sm:text-sm">
       <button id="signInBtn" class="bg-blue-600 text-white px-3 py-1.5 rounded hover:bg-blue-700">
         Sign In / Up
@@ -30,9 +28,12 @@
 
   <div class="flex pt-16">
     <!-- Sidebar -->
-    <aside id="sidebar" class="fixed top-16 left-0 bottom-0 bg-white dark:bg-gray-800 shadow-lg w-0 sm:w-48 overflow-hidden transition-width duration-300 z-40">
-      <nav class="mt-4 px-2">
-        <ul class="space-y-2">
+    <aside id="sidebar"
+           class="fixed top-16 left-0 bottom-0 bg-white dark:bg-gray-800 shadow-lg
+                  w-16 sm:w-48 overflow-hidden transition-all duration-300 z-40
+                  px-2 sm:px-6">
+      <nav class="mt-4">
+        <ul id="navList" class="space-y-2">
           <li class="flex items-center gap-3 p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded cursor-pointer font-semibold text-sm">
             <i class="fas fa-compass w-6 text-center"></i><span class="hidden sm:inline">Explore</span>
           </li>
@@ -52,25 +53,17 @@
           <li class="flex items-center gap-3 p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded cursor-pointer font-semibold text-sm">
             <i class="fas fa-calendar-alt w-6 text-center"></i><span class="hidden sm:inline">Events</span>
           </li>
+          <!-- Dark/Light toggle as nav item -->
+          <li id="darkToggleLi" class="flex items-center gap-3 p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded cursor-pointer font-semibold text-sm">
+            <i id="darkIcon" class="fas fa-moon w-6 text-center"></i><span class="hidden sm:inline">Dark Mode</span>
+          </li>
         </ul>
       </nav>
-      <!-- Dark mode toggle -->
-      <div class="absolute bottom-4 w-full px-4">
-        <div class="flex items-center text-sm">
-          <i id="darkIcon" class="fas fa-moon text-gray-600 dark:text-gray-300"></i>
-          <span class="ml-2 hidden sm:inline">Dark Mode</span>
-          <label for="darkToggle" class="ml-auto relative inline-block w-8 h-5 cursor-pointer">
-            <input id="darkToggle" type="checkbox" class="sr-only peer"/>
-            <div class="w-8 h-5 bg-gray-300 rounded-full peer-checked:bg-blue-600 transition-colors"></div>
-            <div class="absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full peer-checked:translate-x-3 transition-transform"></div>
-          </label>
-        </div>
-      </div>
     </aside>
 
     <!-- Main Content -->
-    <div id="main" class="flex-1 ml-0 sm:ml-48 transition-margin duration-300">
-      <main id="content" class="max-w-7xl mx-auto px-4 py-6 sm:px-6 sm:py-8"></main>
+    <div id="main" class="flex-1 ml-16 sm:ml-48 transition-all duration-300">
+      <main id="content" class="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8"></main>
     </div>
   </div>
 
@@ -84,7 +77,8 @@
 
   <!-- Card Template -->
   <template id="card-template">
-    <div class="card bg-white dark:bg-gray-800 rounded-2xl shadow hover:shadow-lg dark:hover:shadow-xl transition p-4 flex flex-col cursor-pointer">
+    <div class="card bg-white dark:bg-gray-800 rounded-2xl shadow hover:shadow-lg dark:hover:shadow-xl
+                   transition p-4 flex flex-col cursor-pointer">
       <div class="flex items-center mb-2">
         <img class="h-8 w-8 sm:h-10 sm:w-10 object-cover rounded mr-2 border border-gray-200 dark:border-gray-700" src="" alt="Logo"/>
         <h3 class="text-lg sm:text-xl font-semibold flex-1"></h3>
@@ -120,17 +114,26 @@
         <div class="flex space-x-4 mb-4 flex-wrap">
           <a id="modal-join-btn" class="text-white text-sm sm:text-base font-medium px-3 py-1 rounded bg-blue-600 hover:bg-blue-700" target="_blank">Join</a>
           <div id="socials-container" class="relative inline-block text-left">
-            <button id="socials-btn" class="bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 text-sm sm:text-base font-medium px-3 py-1 rounded">
+            <button id="socials-btn" class="bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600
+                                         text-gray-800 dark:text-gray-200 text-sm sm:text-base font-medium px-3 py-1 rounded">
               Socials <i class="fas fa-caret-down ml-1"></i>
             </button>
-            <div id="socials-menu" class="invisible opacity-0 transition-opacity duration-200 absolute right-0 mt-2 w-48 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded shadow-lg z-50"></div>
+            <div id="socials-menu"
+                 class="invisible opacity-0 transition-opacity duration-200 absolute right-0 mt-2 w-48
+                        bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded shadow-lg z-50">
+            </div>
           </div>
-          <button id="contact-info-btn" class="bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 text-sm sm:text-base font-medium px-3 py-1 rounded">Contact Info</button>
+          <button id="contact-info-btn" class="bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600
+                                               text-gray-800 dark:text-gray-200 text-sm sm:text-base font-medium px-3 py-1 rounded">
+            Contact Info
+          </button>
         </div>
         <div class="border-b border-gray-200 dark:border-gray-700 mb-4 relative">
           <nav id="tab-nav" class="flex space-x-4">
-            <button class="tab-button pb-2 px-3 text-sm sm:text-base font-medium text-gray-500 dark:text-gray-400 focus:outline-none" data-tab="overview">Overview</button>
-            <button class="tab-button pb-2 px-3 text-sm sm:text-base font-medium text-gray-500 dark:text-gray-400 focus:outline-none" data-tab="events">Events</button>
+            <button class="tab-button pb-2 px-3 text-sm sm:text-base font-medium text-gray-500 dark:text-gray-400 focus:outline-none"
+                    data-tab="overview">Overview</button>
+            <button class="tab-button pb-2 px-3 text-sm sm:text-base font-medium text-gray-500 dark:text-gray-400 focus:outline-none"
+                    data-tab="events">Events</button>
           </nav>
           <div id="tab-underline" class="absolute bottom-0 h-0.5 bg-blue-600 transition-all"></div>
         </div>
@@ -247,7 +250,7 @@
       const dsEl = modal.querySelector('.details-stage');
       if (item.Stage) dsEl.textContent = item.Stage; else dsEl.remove();
 
-      // Socials
+      // Socials dropdown
       const socialMap = {
         website:'Website', instagram:'Instagram', linkedin:'LinkedIn',
         youtube:'YouTube', tiktok:'TikTok', github:'GitHub', discord:'Discord',
@@ -319,11 +322,35 @@
         fm.textContent = 'Open Form';
       }
       document.body.append(cm);
-      cm.querySelector('.close-contact-modal').onclick = ()=> cm.remove();
+      cm.querySelector('.close-contact-modal').onclick = () => cm.remove();
     }
 
-    // Sign-In & Profile
-    document.getElementById('signInBtn').addEventListener('click', ()=>{
+    // Sidebar collapse
+    document.getElementById('toggleBtn').addEventListener('click', () => {
+      const sb = document.getElementById('sidebar');
+      const mn = document.getElementById('main');
+      const spans = sb.querySelectorAll('span');
+      if (sb.classList.contains('sm:w-48')) {
+        sb.classList.replace('sm:w-48','sm:w-16');
+        mn.classList.replace('sm:ml-48','sm:ml-16');
+      } else {
+        sb.classList.replace('sm:w-16','sm:w-48');
+        mn.classList.replace('sm:ml-16','sm:ml-48');
+      }
+      spans.forEach(s => s.classList.toggle('hidden'));
+    });
+
+    // Dark/light mode toggle
+    document.getElementById('darkIcon').addEventListener('click', () => {
+      const root = document.documentElement;
+      root.classList.toggle('dark');
+      const ic = document.getElementById('darkIcon');
+      ic.classList.toggle('fa-moon');
+      ic.classList.toggle('fa-sun');
+    });
+
+    // Sign-in & profile menu
+    document.getElementById('signInBtn').addEventListener('click', () => {
       const tpl = document.getElementById('signin-modal-template').content.cloneNode(true);
       const m   = tpl.querySelector('.modal-overlay');
       document.body.append(m);
@@ -332,16 +359,16 @@
             passIn  = m.querySelector('#signin-password'),
             errMsg  = m.querySelector('#signin-error'),
             okMsg   = m.querySelector('#signin-success');
-      m.querySelector('#close-signin').onclick = ()=> m.remove();
-      m.addEventListener('click', e=>{ if(e.target.classList.contains('modal-overlay')) m.remove(); });
-      form.addEventListener('submit', e=>{
+      m.querySelector('#close-signin').onclick = () => m.remove();
+      m.addEventListener('click', e => { if (e.target.classList.contains('modal-overlay')) m.remove(); });
+      form.addEventListener('submit', e => {
         e.preventDefault();
         errMsg.classList.add('hidden'); okMsg.classList.add('hidden');
         fetch(AUTH_API).then(r=>r.json()).then(users=>{
           const u = users.find(u=>u.Email===emailIn.value.trim()&&u.Password===passIn.value);
           if (!u) { errMsg.classList.remove('hidden'); return; }
           okMsg.classList.remove('hidden');
-          setTimeout(()=>{
+          setTimeout(() => {
             m.remove();
             const auth = document.getElementById('authContainer');
             auth.innerHTML = `
@@ -356,38 +383,17 @@
             const pfc = document.getElementById('pfpContainer');
             pfc.append(document.getElementById('profile-dropdown-template').content.cloneNode(true));
             const dropdown = document.getElementById('profileDropdown');
-            document.getElementById('pfpBtn').addEventListener('click', e=>{
+            document.getElementById('pfpBtn').addEventListener('click', e => {
               e.stopPropagation();
               dropdown.classList.toggle('hidden');
             });
-            document.addEventListener('click', ()=> dropdown.classList.add('hidden'));
-            document.getElementById('logoutBtn').addEventListener('click', ()=> location.reload());
+            document.addEventListener('click', () => dropdown.classList.add('hidden'));
+            document.getElementById('logoutBtn').addEventListener('click', () => location.reload());
           }, 1000);
         }).catch(()=>{
           errMsg.textContent='Network error. Try again.'; errMsg.classList.remove('hidden');
         });
       });
-    });
-
-    // Sidebar toggle
-    document.getElementById('toggleBtn').addEventListener('click', ()=>{
-      const sb = document.getElementById('sidebar'),
-            mn = document.getElementById('main');
-      if (sb.classList.contains('w-0')) {
-        sb.classList.replace('w-0','sm:w-48');
-        mn.classList.replace('ml-0','sm:ml-48');
-      } else {
-        sb.classList.replace('sm:w-48','w-0');
-        mn.classList.replace('sm:ml-48','ml-0');
-      }
-    });
-
-    // Dark mode toggle
-    document.getElementById('darkToggle').addEventListener('change', e=>{
-      document.documentElement.classList.toggle('dark', e.target.checked);
-      const di = document.getElementById('darkIcon');
-      di.classList.toggle('fa-moon', !e.target.checked);
-      di.classList.toggle('fa-sun', e.target.checked);
     });
   </script>
 </body>
