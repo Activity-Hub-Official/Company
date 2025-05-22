@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Activity Hub</title>
 
-  <!-- TailwindCSS with class-based dark mode (load early to avoid flicker) -->
+  <!-- TailwindCSS with class-based dark mode -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = { darkMode: 'class' };
@@ -19,14 +19,16 @@
 </head>
 <body class="bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-100">
 
-  <!-- Navbar -->
+  <!-- NAVBAR -->
   <header class="fixed top-0 left-0 right-0 h-16 bg-white dark:bg-gray-800 shadow flex items-center px-4 md:px-6 lg:px-8 z-50">
+    <!-- Sidebar toggle -->
     <button id="toggleBtn" type="button"
             class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white mr-4"
             aria-label="Toggle sidebar" aria-expanded="false">
       <i class="fas fa-bars fa-lg"></i>
     </button>
-    <!-- Logo hyperlink matches Explore; inline style prevents initial flash -->
+
+    <!-- Logo -->
     <a data-key="Explore" href="#">
       <img
         src="https://i.imgur.com/T28QHq2.png"
@@ -35,16 +37,43 @@
         style="height:3.5rem; width:auto;"
       />
     </a>
+
+    <!-- Auth Container -->
     <div id="authContainer" class="ml-auto flex items-center space-x-4">
+      <!-- Sign In button shown until user is authenticated -->
       <button id="signInBtn" type="button"
               class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
         Sign In / Up
       </button>
+      <!-- Mobile “more” button -->
+      <button id="mobileMenuBtn"
+              class="md:hidden text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white">
+        <i class="fas fa-ellipsis-v fa-lg"></i>
+      </button>
     </div>
   </header>
 
+  <!-- MOBILE BOTTOM SHEET MENU -->
+  <div id="mobileMenu"
+       class="fixed bottom-0 inset-x-0 bg-white dark:bg-gray-800 p-4 shadow-md transform translate-y-full transition-transform duration-300 md:hidden z-50">
+    <div class="flex justify-around">
+      <a data-key="Upload Activity" href="#"
+         class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white">
+        <i class="fas fa-plus-circle fa-2x"></i>
+      </a>
+      <button id="notificationsBtnMobile"
+              class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white">
+        <i class="fas fa-bell fa-2x"></i>
+      </button>
+      <button id="profileMenuBtnMobile"
+              class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white">
+        <i class="fas fa-user-circle fa-2x"></i>
+      </button>
+    </div>
+  </div>
+
   <div class="flex pt-16">
-    <!-- Sidebar: positioned below header (top-16), off-canvas on mobile, collapsible on desktop -->
+    <!-- SIDEBAR -->
     <aside id="sidebar"
            class="fixed top-16 bottom-0 left-0 bg-white dark:bg-gray-800 shadow-lg w-48 transform -translate-x-full md:translate-x-0 transition-transform duration-300 overflow-hidden z-40"
            aria-label="Main sidebar navigation">
@@ -103,13 +132,13 @@
       </div>
     </aside>
 
-    <!-- Main Content -->
+    <!-- MAIN CONTENT -->
     <div id="main" role="main" class="flex-1 transition-all duration-300 ml-0 md:ml-48">
       <main id="content" class="max-w-7xl mx-auto px-4 py-6"></main>
     </div>
   </div>
 
-  <!-- Section Template -->
+  <!-- SECTION TEMPLATE -->
   <template id="section-template">
     <section class="mb-12">
       <h2 class="text-2xl font-semibold mb-6"></h2>
@@ -117,7 +146,7 @@
     </section>
   </template>
 
-  <!-- Card Template -->
+  <!-- CARD TEMPLATE -->
   <template id="card-template">
     <div class="card bg-white dark:bg-gray-800 rounded-2xl shadow hover:shadow-lg dark:hover:shadow-xl transition p-4 flex flex-col cursor-pointer">
       <div class="flex items-center mb-2">
@@ -140,7 +169,7 @@
     </div>
   </template>
 
-  <!-- Details Modal Template -->
+  <!-- DETAILS MODAL TEMPLATE -->
   <template id="details-modal-template">
     <div class="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
          role="dialog" aria-modal="true">
@@ -202,7 +231,7 @@
     </div>
   </template>
 
-  <!-- Contact Modal Template -->
+  <!-- CONTACT MODAL TEMPLATE -->
   <template id="contact-modal-template">
     <div class="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
          role="dialog" aria-modal="true">
@@ -215,7 +244,7 @@
     </div>
   </template>
 
-  <!-- Sign In Modal Template -->
+  <!-- SIGN IN MODAL TEMPLATE -->
   <template id="signin-modal-template">
     <div class="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" role="dialog" aria-modal="true">
       <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg w-80 p-6 relative">
@@ -238,7 +267,7 @@
     </div>
   </template>
 
-  <!-- Profile Dropdown Template -->
+  <!-- PROFILE DROPDOWN TEMPLATE -->
   <template id="profile-dropdown-template">
     <div id="profileDropdown" class="absolute right-0 mt-2 w-40 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded shadow-lg py-2 z-50 hidden">
       <a data-key="Profile" href="#" class="block px-4 py-2 text-sm flex items-center hover:bg-gray-100 dark:hover:bg-gray-700">
@@ -256,7 +285,7 @@
     </div>
   </template>
 
-  <!-- Profile Modal Template -->
+  <!-- PROFILE MODAL TEMPLATE -->
   <template id="profile-modal-template">
     <div class="profile-modal-overlay fixed z-30 bg-white dark:bg-gray-800 overflow-auto">
       <div class="relative h-full w-full p-6">
@@ -279,7 +308,7 @@
     </div>
   </template>
 
-  <!-- Logout Confirmation Template -->
+  <!-- LOGOUT CONFIRMATION TEMPLATE -->
   <template id="logout-confirmation-template">
     <div class="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
       <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 w-80">
@@ -293,14 +322,15 @@
     </div>
   </template>
 
-  <script>
+  <!-- MAIN SCRIPT -->
+  <script defer>
     const LINK_API = 'https://sheet2api.com/v1/rhBSJNTTYKgC/hyperlinks';
     const API      = 'https://sheet2api.com/v1/an4oVvpQR51V/mock-data-new';
     const AUTH_API = 'https://sheet2api.com/v1/rkmbUqHQAC3C/submission-form-responses';
     let linkMap = {};
 
     document.addEventListener('DOMContentLoaded', () => {
-      // 1) INITIAL THEME SETUP
+      // THEME SETUP
       const htmlEl     = document.documentElement;
       const themeToggle = document.getElementById('darkToggle');
       const themeIcon   = document.getElementById('darkIcon');
@@ -315,20 +345,20 @@
         themeIcon.classList.replace('fa-sun','fa-moon');
       }
 
-      // 2) LOAD NAVIGATION LINKS
+      // LOAD NAV LINKS
       fetch(LINK_API)
         .then(r => r.json())
         .then(arr => { linkMap = arr[0]; applyLinks(); })
         .catch(console.error);
 
-      // 3) RESTORE SESSION
+      // RESTORE SESSION
       const stored = localStorage.getItem('currentUser');
       if (stored) {
         try { initAuth(JSON.parse(stored)); }
         catch { localStorage.removeItem('currentUser'); }
       }
 
-      // 4) FETCH & RENDER LISTINGS
+      // FETCH & RENDER ITEMS
       fetch(API)
         .then(r => r.json())
         .then(items => {
@@ -372,22 +402,26 @@
       localStorage.setItem('currentUser', JSON.stringify(u));
       const ac = document.getElementById('authContainer');
       ac.innerHTML = `
-        <a data-key="Upload Activity" href="#" class="text-gray-600 dark:text-gray-300 mr-4 cursor-pointer">
+        <a data-key="Upload Activity" href="#" class="text-gray-600 dark:text-gray-300 mr-4 hover:text-gray-800 dark:hover:text-white">
           <i class="fas fa-plus-circle fa-lg"></i>
         </a>
-        <i class="fas fa-bell text-gray-600 dark:text-gray-300 mr-4 cursor-pointer"></i>
-        <span class="font-medium mr-2">${u["First Name"]}</span>
+        <button id="notificationsBtn" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white mr-4">
+          <i class="fas fa-bell fa-lg"></i>
+        </button>
+        <span class="font-medium dark:text-gray-100 mr-4">${u["First Name"]}</span>
         <div id="pfpContainer" class="relative">
           <img id="pfpBtn" src="${u["Profile Picture"]}"
+               alt="You"
                class="h-10 w-10 rounded-full border-2 border-gray-200 dark:border-gray-700 cursor-pointer"/>
+          ${document.getElementById('profile-dropdown-template').innerHTML}
         </div>
+        <button id="mobileMenuBtn" class="md:hidden text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white">
+          <i class="fas fa-ellipsis-v fa-lg"></i>
+        </button>
       `;
       applyLinks();
 
-      const pfc     = document.getElementById('pfpContainer');
-      const ddClone = document.getElementById('profile-dropdown-template').content.cloneNode(true);
-      pfc.append(ddClone);
-
+      // PROFILE DROPDOWN
       const dd = document.getElementById('profileDropdown');
       document.getElementById('pfpBtn').addEventListener('click', e => {
         e.stopPropagation();
@@ -395,6 +429,7 @@
       });
       document.addEventListener('click', () => dd.classList.add('hidden'));
 
+      // LOGOUT
       document.getElementById('logoutBtn').addEventListener('click', e => {
         e.preventDefault();
         showLogoutConfirmation();
@@ -403,19 +438,16 @@
 
     // RESPONSIVE SIDEBAR & DESKTOP COLLAPSE
     document.getElementById('toggleBtn').addEventListener('click', () => {
-      const sb       = document.getElementById('sidebar');
-      const mn       = document.getElementById('main');
-      const toggleBtn = document.getElementById('toggleBtn');
-      const isMobile = window.innerWidth < 768;
+      const sb        = document.getElementById('sidebar');
+      const mn        = document.getElementById('main');
+      const isMobile  = window.innerWidth < 768;
 
       if (isMobile) {
-        // Off-canvas on mobile
         const hidden = sb.classList.contains('-translate-x-full');
         sb.classList.toggle('translate-x-0', hidden);
         sb.classList.toggle('-translate-x-full', !hidden);
-        toggleBtn.setAttribute('aria-expanded', String(hidden));
+        document.getElementById('toggleBtn').setAttribute('aria-expanded', String(hidden));
       } else {
-        // Collapse/expand on desktop
         const lbl = document.getElementById('darkToggleLabel');
         const txt = document.getElementById('darkToggleText');
         if (sb.classList.contains('w-48')) {
@@ -434,8 +466,8 @@
 
     // DARK MODE TOGGLE
     document.getElementById('darkToggle').addEventListener('change', e => {
-      const htmlEl   = document.documentElement;
-      const di       = document.getElementById('darkIcon');
+      const htmlEl = document.documentElement;
+      const di     = document.getElementById('darkIcon');
       if (e.target.checked) {
         htmlEl.classList.add('dark');
         di.classList.replace('fa-moon','fa-sun');
@@ -452,7 +484,7 @@
       inp.dispatchEvent(new Event('change'));
     });
 
-    // Sign-in logic
+    // SIGN-IN LOGIC
     document.getElementById('signInBtn').addEventListener('click', () => {
       const tpl = document.getElementById('signin-modal-template').content.cloneNode(true);
       const m   = tpl.querySelector('.modal-overlay');
@@ -495,7 +527,7 @@
       });
     });
 
-    // Logout confirmation
+    // LOGOUT CONFIRMATION
     function showLogoutConfirmation() {
       const tpl   = document.getElementById('logout-confirmation-template').content.cloneNode(true);
       const modal = tpl.querySelector('.modal-overlay');
@@ -508,7 +540,7 @@
       });
     }
 
-    // Details modal
+    // DETAILS MODAL
     function showDetails(item) {
       const tpl   = document.getElementById('details-modal-template').content.cloneNode(true);
       const modal = tpl.querySelector('.modal-overlay');
@@ -581,7 +613,7 @@
       nav.querySelector('.tab-button').click();
     }
 
-    // Contact modal
+    // CONTACT MODAL
     function showContact(item) {
       const tpl = document.getElementById('contact-modal-template').content.cloneNode(true);
       const cm  = tpl.querySelector('.modal-overlay');
@@ -597,7 +629,7 @@
       cm.querySelector('.close-contact-modal').onclick = ()=> cm.remove();
     }
 
-    // Profile modal
+    // PROFILE MODAL
     function showProfileModal() {
       const tpl     = document.getElementById('profile-modal-template').content.cloneNode(true);
       const modal   = tpl.querySelector('.profile-modal-overlay');
@@ -616,12 +648,25 @@
       document.body.append(modal);
     }
 
-    // Profile link click
+    // PROFILE LINK CLICK
     document.addEventListener('click', e=>{
       if (e.target.matches('[data-key="Profile"]')) {
         e.preventDefault();
         showProfileModal();
       }
+    });
+
+    // MOBILE MENU TOGGLES
+    document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+      document.getElementById('mobileMenu').classList.toggle('translate-y-full');
+    });
+    document.getElementById('notificationsBtnMobile').addEventListener('click', () => {
+      document.getElementById('notificationsBtn')?.click();
+      document.getElementById('mobileMenu').classList.add('translate-y-full');
+    });
+    document.getElementById('profileMenuBtnMobile').addEventListener('click', () => {
+      document.getElementById('pfpBtn')?.click();
+      document.getElementById('mobileMenu').classList.add('translate-y-full');
     });
   </script>
 </body>
