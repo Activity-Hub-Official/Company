@@ -14,41 +14,51 @@
     crossorigin="anonymous"
     referrerpolicy="no-referrer"
   />
+  <style>
+    /* Spacer for fixed navbar */
+    .navbar-spacer { height: 5rem; }
+  </style>
 </head>
 <body class="font-sans text-gray-900 leading-relaxed bg-white">
 
   <!-- FIXED NAVBAR -->
   <header class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200 shadow-sm">
     <div class="container mx-auto px-4 max-w-7xl flex items-center justify-between h-20">
-      <!-- Combined Logo -->
-      <a href="https://activity-hub-official.github.io/Company/LandingPage.html">
+      <!-- Logo -->
+      <a id="logo-link" href="#">
         <img src="https://i.imgur.com/T28QHq2.png" alt="Activity Hub Logo" class="h-16 sm:h-20">
       </a>
 
-      <!-- Nav Links -->
-      <nav class="hidden sm:flex space-x-6 text-gray-800 font-medium text-sm sm:text-base">
-        <a href="https://activity-hub-official.github.io/Company/LandingPage.html" class="hover:text-blue-600">Company</a>
-        <a href="https://activity-hub-official.github.io/Company/About.html" class="hover:text-blue-600 border-b-2 border-blue-600 pb-1">About</a>
-        <a href="https://activity-hub-official.github.io/Company/Careers.html" class="hover:text-blue-600">Careers</a>
-        <a href="https://activity-hub-official.github.io/Company/News.html" class="hover:text-blue-600">News</a>
+      <!-- Desktop Nav Links -->
+      <nav id="desktop-nav" class="hidden sm:flex space-x-6 text-gray-800 font-medium text-sm sm:text-base">
+        <!-- Populated via JavaScript -->
       </nav>
 
       <!-- CTA -->
-      <a href="https://activity-hub-official.github.io/Company/Beta-Testing.html"
+      <a id="cta-button" href="#"
          class="ml-4 inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-full text-sm sm:text-base">
         Visit Activity Hub
       </a>
     </div>
+
+    <!-- Mobile Nav Links Row -->
+    <div class="sm:hidden bg-white border-t border-gray-200">
+      <div id="mobile-nav" class="container mx-auto px-4 flex justify-around py-2">
+        <!-- Populated via JavaScript -->
+      </div>
+    </div>
   </header>
 
-  <!-- SPACER -->
-  <div class="h-20"></div>
+  <!-- Spacer for fixed navbar -->
+  <div class="navbar-spacer"></div>
 
   <!-- HERO -->
   <section class="bg-blue-600 text-white py-12 sm:py-16">
     <div class="container mx-auto px-4 max-w-4xl text-center">
       <h1 class="text-4xl font-bold mb-4">Our Mission</h1>
-      <p class="text-lg sm:text-xl max-w-2xl mx-auto">Activity Hub is building a new kind of campus ecosystem—one where student clubs, events, startups, and research projects are all discoverable in one place. We believe in giving students the tools to connect, create, and be seen.</p>
+      <p class="text-lg sm:text-xl max-w-2xl mx-auto">
+        Activity Hub is building a new kind of campus ecosystem—one where student clubs, events, startups, and research projects are all discoverable in one place. We believe in giving students the tools to connect, create, and be seen.
+      </p>
     </div>
   </section>
 
@@ -72,15 +82,21 @@
       <ul class="space-y-6">
         <li class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-blue-600">
           <h3 class="font-bold text-lg">Fall 2023 – The Idea</h3>
-          <p class="text-gray-600 text-sm sm:text-base">Frustrated with fragmented campus communication, the concept for Activity Hub was born: a unified place to find and share student-led work.</p>
+          <p class="text-gray-600 text-sm sm:text-base">
+            Frustrated with fragmented campus communication, the concept for Activity Hub was born: a unified place to find and share student-led work.
+          </p>
         </li>
         <li class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-blue-600">
           <h3 class="font-bold text-lg">Spring 2024 – First Demo</h3>
-          <p class="text-gray-600 text-sm sm:text-base">A prototype was built using open-source tools and AI-assisted coding. Students from several universities joined as early collaborators.</p>
+          <p class="text-gray-600 text-sm sm:text-base">
+            A prototype was built using open-source tools and AI-assisted coding. Students from several universities joined as early collaborators.
+          </p>
         </li>
         <li class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-blue-600">
           <h3 class="font-bold text-lg">2025 – Beta Launch</h3>
-          <p class="text-gray-600 text-sm sm:text-base">Activity Hub enters private beta, with verified student orgs and research projects now onboarded from multiple schools.</p>
+          <p class="text-gray-600 text-sm sm:text-base">
+            Activity Hub enters private beta, with verified student orgs and research projects now onboarded from multiple schools.
+          </p>
         </li>
       </ul>
     </div>
@@ -92,39 +108,44 @@
       <h2 class="text-2xl sm:text-3xl font-semibold mb-6">Meet the Founder</h2>
       <img src="https://i.imgur.com/P1vTid5.jpeg" alt="Saeed Khan" class="w-32 h-32 rounded-full mx-auto mb-4 shadow-md">
       <h3 class="text-lg font-bold mb-1">Saeed Khan</h3>
-      <p class="text-gray-600 max-w-2xl mx-auto text-sm sm:text-base">Saeed is a student at St. John’s University and the founder of Activity Hub. A passionate builder and community organizer, he believes that with the right tools, students can run entire ecosystems—and they deserve the spotlight. He’s working with student consulting teams, faculty advisors, and peer collaborators to bring Activity Hub to life.</p>
+      <p class="text-gray-600 max-w-2xl mx-auto text-sm sm:text-base">
+        Saeed is a student at St. John’s University and the founder of Activity Hub. A passionate builder and community organizer, he believes that with the right tools, students can run entire ecosystems—and they deserve the spotlight. He’s working with student consulting teams, faculty advisors, and peer collaborators to bring Activity Hub to life.
+      </p>
     </div>
   </section>
 
   <!-- FOOTER -->
-  <footer class="bg-gray-100 py-8 sm:py-12">
+  <footer class="bg-gray-100 py-8 sm:py-12 mt-16">
     <div class="container mx-auto px-4 max-w-7xl">
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 mb-8 text-sm sm:text-base">
+      <div class="grid grid-cols-1 sm:grid-cols-4 gap-6 sm:gap-8 mb-8 text-sm sm:text-base">
+        <!-- Logo & Socials -->
+        <div class="flex flex-col items-start space-y-4">
+          <a id="footer-logo-link" href="#">
+            <img src="https://i.imgur.com/T28QHq2.png" alt="Activity Hub Logo" class="h-12 sm:h-16">
+          </a>
+          <div id="social-links" class="flex space-x-4">
+            <!-- Populated via JavaScript -->
+          </div>
+        </div>
+        <!-- Company Links -->
         <div>
           <h4 class="text-lg font-semibold mb-2">Company</h4>
-          <ul class="space-y-2">
-            <li><a href="https://activity-hub-official.github.io/Company/LandingPage.html" class="flex items-center text-gray-700 hover:text-blue-600"><i class="fa-solid fa-chevron-right mr-2"></i>Company</a></li>
-            <li><a href="https://activity-hub-official.github.io/Company/About.html" class="flex items-center text-gray-700 hover:text-blue-600"><i class="fa-solid fa-chevron-right mr-2"></i>About</a></li>
-            <li><a href="https://activity-hub-official.github.io/Company/Careers.html" class="flex items-center text-gray-700 hover:text-blue-600"><i class="fa-solid fa-chevron-right mr-2"></i>Careers</a></li>
-            <li><a href="https://activity-hub-official.github.io/Company/News.html" class="flex items-center text-gray-700 hover:text-blue-600"><i class="fa-solid fa-chevron-right mr-2"></i>News</a></li>
+          <ul id="footer-company-links" class="space-y-2">
+            <!-- Populated via JavaScript -->
           </ul>
         </div>
+        <!-- Community Links -->
         <div>
-          <h4 class="text-lg font-semibold mb-2">Resources</h4>
-          <ul class="space-y-2">
-            <li><a href="#" class="flex items-center text-gray-700 hover:text-blue-600"><i class="fa-solid fa-chevron-right mr-2"></i>Blog</a></li>
-            <li><a href="#" class="flex items-center text-gray-700 hover:text-blue-600"><i class="fa-solid fa-chevron-right mr-2"></i>Help</a></li>
-            <li><a href="#" class="flex items-center text-gray-700 hover:text-blue-600"><i class="fa-solid fa-chevron-right mr-2"></i>Activity Hub Coins</a></li>
-            <li><a href="#" class="flex items-center text-gray-700 hover:text-blue-600"><i class="fa-solid fa-chevron-right mr-2"></i>Activity Hub Premium</a></li>
+          <h4 class="text-lg font-semibold mb-2">Community</h4>
+          <ul id="footer-community-links" class="space-y-2">
+            <!-- Populated via JavaScript -->
           </ul>
         </div>
+        <!-- Privacy & Safety Links -->
         <div>
-          <h4 class="text-lg font-semibold mb-2">Policies</h4>
-          <ul class="space-y-2">
-            <li><a href="#" class="flex items-center text-gray-700 hover:text-blue-600"><i class="fa-solid fa-chevron-right mr-2"></i>User Agreement</a></li>
-            <li><a href="#" class="flex items-center text-gray-700 hover:text-blue-600"><i class="fa-solid fa-chevron-right mr-2"></i>Privacy Policy</a></li>
-            <li><a href="#" class="flex items-center text-gray-700 hover:text-blue-600"><i class="fa-solid fa-chevron-right mr-2"></i>Content Policy</a></li>
-            <li><a href="#" class="flex items-center text-gray-700 hover:text-blue-600"><i class="fa-solid fa-chevron-right mr-2"></i>Moderator Code of Conduct</a></li>
+          <h4 class="text-lg font-semibold mb-2">Privacy &amp; Safety</h4>
+          <ul id="footer-privacy-links" class="space-y-2">
+            <!-- Populated via JavaScript -->
           </ul>
         </div>
       </div>
@@ -132,5 +153,141 @@
     </div>
   </footer>
 
+  <!-- Script to fetch and populate links -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const apiURL = 'https://sheet2api.com/v1/an4oVvpQR51V/links-company-page';
+
+      fetch(apiURL)
+        .then(response => response.json())
+        .then(data => {
+          const links = data[0];
+
+          // Populate Navbar (Desktop & Mobile)
+          const desktopNav = document.getElementById('desktop-nav');
+          const mobileNav = document.getElementById('mobile-nav');
+          const navItems = [
+            { text: 'Company', key: 'ActivityHub.com' },
+            { text: 'About', key: 'About Us' },
+            { text: 'Careers', key: 'Career' },
+            { text: 'News', key: 'News' }
+          ];
+          navItems.forEach(item => {
+            const url = links[item.key] || '#';
+            const href = url !== 'link not defined' ? url : '#';
+
+            // Desktop link
+            const aDesktop = document.createElement('a');
+            aDesktop.href = href;
+            aDesktop.className = 'hover:text-blue-600';
+            aDesktop.textContent = item.text;
+            // Highlight "About"
+            if (item.text === 'About') {
+              aDesktop.classList.add('border-b-2', 'border-blue-600', 'pb-1');
+            }
+            desktopNav.appendChild(aDesktop);
+
+            // Mobile link
+            const aMobile = document.createElement('a');
+            aMobile.href = href;
+            aMobile.className = 'text-gray-800 font-medium text-sm';
+            aMobile.textContent = item.text;
+            mobileNav.appendChild(aMobile);
+          });
+
+          // Logo links (Navbar & Footer) to landing page
+          const landingURL = links['ActivityHub.com'] !== 'link not defined' ? links['ActivityHub.com'] : '#';
+          document.getElementById('logo-link').href = landingURL;
+          document.getElementById('footer-logo-link').href = landingURL;
+
+          // CTA button link (Visit Activity Hub)
+          const ctaButton = document.getElementById('cta-button');
+          ctaButton.href = landingURL;
+
+          // Populate Footer Company
+          const footerCompany = document.getElementById('footer-company-links');
+          const companyItems = [
+            { text: 'Activity Hub', key: 'Activity Hub' },
+            { text: 'About Us', key: 'About Us' },
+            { text: 'Career', key: 'Career' },
+            { text: 'Partners', key: 'Partners' },
+            { text: 'Press & Media', key: 'Press & Media' },
+            { text: 'News', key: 'News' }
+          ];
+          companyItems.forEach(item => {
+            const url = links[item.key] || '#';
+            const href = url !== 'link not defined' ? url : '#';
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+            a.href = href;
+            a.className = 'text-gray-700 hover:text-blue-600';
+            a.textContent = item.text;
+            li.appendChild(a);
+            footerCompany.appendChild(li);
+          });
+
+          // Populate Footer Community
+          const footerCommunity = document.getElementById('footer-community-links');
+          const communityItems = [
+            { text: 'ActivityHub.com', key: 'ActivityHub.com' },
+            { text: 'Activity Hub Rules', key: 'Activity Hub Rules' },
+            { text: 'Help Center', key: 'Help Center' }
+          ];
+          communityItems.forEach(item => {
+            const url = links[item.key] || '#';
+            const href = url !== 'link not defined' ? url : '#';
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+            a.href = href;
+            a.className = 'text-gray-700 hover:text-blue-600';
+            a.textContent = item.text;
+            li.appendChild(a);
+            footerCommunity.appendChild(li);
+          });
+
+          // Populate Footer Privacy & Safety
+          const footerPrivacy = document.getElementById('footer-privacy-links');
+          const privacyItems = [
+            { text: 'User Agreement', key: 'User Agreement' },
+            { text: 'Privacy Policy', key: 'Privacy Policy' },
+            { text: 'Content Policy', key: 'Content Policy' }
+          ];
+          privacyItems.forEach(item => {
+            const url = links[item.key] || '#';
+            const href = url !== 'link not defined' ? url : '#';
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+            a.href = href;
+            a.className = 'text-gray-700 hover:text-blue-600';
+            a.textContent = item.text;
+            li.appendChild(a);
+            footerPrivacy.appendChild(li);
+          });
+
+          // Populate Social Links (larger icons)
+          const socialContainer = document.getElementById('social-links');
+          const socialItems = [
+            { key: 'Instagram', icon: 'fab fa-instagram' },
+            { key: 'X (Twitter)', icon: 'fab fa-twitter' },
+            { key: 'YouTube', icon: 'fab fa-youtube' },
+            { key: 'TikTok', icon: 'fab fa-tiktok' },
+            { key: 'LinkedIn', icon: 'fab fa-linkedin' }
+          ];
+          socialItems.forEach(item => {
+            const url = links[item.key] || '#';
+            const href = url !== 'link not defined' ? url : '#';
+            const a = document.createElement('a');
+            a.href = href;
+            a.target = '_blank';
+            a.className = 'text-gray-600 hover:text-blue-600';
+            a.innerHTML = `<i class="${item.icon} text-2xl"></i>`;
+            socialContainer.appendChild(a);
+          });
+        })
+        .catch(error => {
+          console.error('Error fetching links:', error);
+        });
+    });
+  </script>
 </body>
 </html>

@@ -2,672 +2,97 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Activity Hub</title>
-
-  <!-- TailwindCSS with class-based dark mode -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = { darkMode: 'class' };
-  </script>
-
-  <!-- Font Awesome -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-  />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Activity Hub Beta Access</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #2193b0, #6dd5ed);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      color: #fff;
+    }
+    .container {
+      background-color: rgba(0, 0, 0, 0.25);
+      padding: 2.5rem 3rem;
+      border-radius: 12px;
+      text-align: center;
+      max-width: 400px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+    h1 {
+      margin-bottom: 1rem;
+      font-size: 2rem;
+    }
+    p {
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+    input[type="password"] {
+      padding: 0.7rem;
+      width: 100%;
+      border: none;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+    button {
+      background-color: #fff;
+      color: #2193b0;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+      font-size: 1rem;
+    }
+    button:hover {
+      background-color: #f0f0f0;
+    }
+    .error {
+      color: #ffcccb;
+      margin-top: 0.75rem;
+      font-size: 0.9rem;
+    }
+    .request-access {
+      margin-top: 1.5rem;
+      display: inline-block;
+      color: #fff;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  </style>
 </head>
-<body class="bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-100">
-
-  <!-- NAVBAR -->
-  <header class="fixed top-0 left-0 right-0 h-16 bg-white dark:bg-gray-800 shadow flex items-center px-4 md:px-6 lg:px-8 z-50">
-    <!-- Sidebar toggle -->
-    <button id="toggleBtn" type="button"
-            class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white mr-4"
-            aria-label="Toggle sidebar" aria-expanded="false">
-      <i class="fas fa-bars fa-lg"></i>
-    </button>
-
-    <!-- Logo -->
-    <a data-key="Explore" href="#">
-      <img
-        src="https://i.imgur.com/T28QHq2.png"
-        alt="Activity Hub Logo"
-        class="h-14 w-auto"
-        style="height:3.5rem; width:auto;"
-      />
-    </a>
-
-    <!-- Auth Container -->
-    <div id="authContainer" class="ml-auto flex items-center space-x-4">
-      <!-- Sign In button shown until user is authenticated -->
-      <button id="signInBtn" type="button"
-              class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-        Sign In / Up
-      </button>
-      <!-- Mobile “more” button -->
-      <button id="mobileMenuBtn"
-              class="md:hidden text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white">
-        <i class="fas fa-ellipsis-v fa-lg"></i>
-      </button>
-    </div>
-  </header>
-
-  <!-- MOBILE BOTTOM SHEET MENU -->
-  <div id="mobileMenu"
-       class="fixed bottom-0 inset-x-0 bg-white dark:bg-gray-800 p-4 shadow-md transform translate-y-full transition-transform duration-300 md:hidden z-50">
-    <div class="flex justify-around">
-      <a data-key="Upload Activity" href="#"
-         class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white">
-        <i class="fas fa-plus-circle fa-2x"></i>
-      </a>
-      <button id="notificationsBtnMobile"
-              class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white">
-        <i class="fas fa-bell fa-2x"></i>
-      </button>
-      <button id="profileMenuBtnMobile"
-              class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white">
-        <i class="fas fa-user-circle fa-2x"></i>
-      </button>
+<body>
+  <div class="container">
+    <h1>Private Beta Access</h1>
+    <p>Activity Hub is currently in closed beta for early student testers.</p>
+    <input type="password" id="passcode" placeholder="Enter passcode" />
+    <button onclick="checkPasscode()">Enter Beta</button>
+    <div id="error" class="error"></div>
+    <div class="request-access" onclick="alert('Please email hello@activityhub.io to request access.')">
+      Request Beta Access
     </div>
   </div>
 
-  <div class="flex pt-16">
-    <!-- SIDEBAR -->
-    <aside id="sidebar"
-           class="fixed top-16 bottom-0 left-0 bg-white dark:bg-gray-800 shadow-lg w-48 transform -translate-x-full md:translate-x-0 transition-transform duration-300 overflow-hidden z-40"
-           aria-label="Main sidebar navigation">
-      <nav class="mt-4 px-2">
-        <ul class="space-y-2">
-          <li>
-            <a data-key="Explore" href="#"
-               class="flex items-center gap-3 p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded font-semibold">
-              <i class="fas fa-compass w-6 text-center"></i><span>Explore</span>
-            </a>
-          </li>
-          <li><hr class="border-gray-300 dark:border-gray-600 my-2"></li>
-          <li>
-            <a data-key="Clubs" href="#"
-               class="flex items-center gap-3 p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded font-semibold">
-              <i class="fas fa-users w-6 text-center"></i><span>Clubs</span>
-            </a>
-          </li>
-          <li>
-            <a data-key="Businesses" href="#"
-               class="flex items-center gap-3 p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded font-semibold">
-              <i class="fas fa-briefcase w-6 text-center"></i><span>Businesses</span>
-            </a>
-          </li>
-          <li>
-            <a data-key="Projects" href="#"
-               class="flex items-center gap-3 p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded font-semibold">
-              <i class="fas fa-project-diagram w-6 text-center"></i><span>Projects</span>
-            </a>
-          </li>
-          <li>
-            <a data-key="People" href="#"
-               class="flex items-center gap-3 p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded font-semibold">
-              <i class="fas fa-user-friends w-6 text-center"></i><span>People</span>
-            </a>
-          </li>
-          <li>
-            <a data-key="Events" href="#"
-               class="flex items-center gap-3 p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded font-semibold">
-              <i class="fas fa-calendar-alt w-6 text-center"></i><span>Events</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-      <!-- Dark mode toggle -->
-      <div class="absolute bottom-4 w-full px-4 flex items-center" id="darkToggleContainer">
-        <i id="darkIcon" class="fas fa-moon text-gray-600 dark:text-gray-300 cursor-pointer"
-           aria-label="Toggle dark mode"></i>
-        <span id="darkToggleText" class="ml-2 text-sm font-bold">Dark Mode</span>
-        <label id="darkToggleLabel" for="darkToggle"
-               class="ml-auto relative inline-block w-10 h-6 cursor-pointer">
-          <input id="darkToggle" type="checkbox" class="sr-only peer"/>
-          <div class="w-10 h-6 bg-gray-300 rounded-full peer-checked:bg-blue-600 transition-colors"></div>
-          <div class="absolute top-1 left-1 w-4 h-4 bg-white rounded-full peer-checked:translate-x-4 transition-transform"></div>
-        </label>
-      </div>
-    </aside>
+  <script>
+    const correctPasscode = "YOUR_SECRET_PASSCODE"; // change this!
 
-    <!-- MAIN CONTENT -->
-    <div id="main" role="main" class="flex-1 transition-all duration-300 ml-0 md:ml-48">
-      <main id="content" class="max-w-7xl mx-auto px-4 py-6"></main>
-    </div>
-  </div>
+    function checkPasscode() {
+      const input = document.getElementById("passcode").value;
+      const errorDiv = document.getElementById("error");
 
-  <!-- SECTION TEMPLATE -->
-  <template id="section-template">
-    <section class="mb-12">
-      <h2 class="text-2xl font-semibold mb-6"></h2>
-      <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3"></div>
-    </section>
-  </template>
-
-  <!-- CARD TEMPLATE -->
-  <template id="card-template">
-    <div class="card bg-white dark:bg-gray-800 rounded-2xl shadow hover:shadow-lg dark:hover:shadow-xl transition p-4 flex flex-col cursor-pointer">
-      <div class="flex items-center mb-2">
-        <img class="h-8 w-8 object-cover rounded mr-2 border border-gray-200 dark:border-gray-700"
-             src="" alt="Logo"/>
-        <h3 class="text-lg font-semibold flex-1"></h3>
-      </div>
-      <p class="text-sm text-gray-600 dark:text-gray-300 mb-4 line-clamp-2 tagline"></p>
-      <div class="flex flex-wrap gap-2 mb-4">
-        <span class="business-type bg-teal-100 dark:bg-teal-900 text-teal-800 dark:text-teal-200 text-xs font-medium px-2.5 py-0.5 rounded"></span>
-        <span class="industry bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-xs font-medium px-2.5 py-0.5 rounded"></span>
-        <span class="stage bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-xs font-medium px-2.5 py-0.5 rounded"></span>
-      </div>
-      <div class="flex items-center text-xs text-gray-500 dark:text-gray-400 mt-auto">
-        <i class="fas fa-map-marker-alt mr-1"></i>
-        <span class="school mr-4"></span>
-        <i class="fas fa-circle text-green-500 dark:text-green-400 text-[0.5rem] mr-1"></i>
-        <span class="members mr-1"></span> Members
-      </div>
-    </div>
-  </template>
-
-  <!-- DETAILS MODAL TEMPLATE -->
-  <template id="details-modal-template">
-    <div class="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
-         role="dialog" aria-modal="true">
-      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg max-w-lg w-full p-6 relative">
-        <button type="button"
-                class="absolute top-3 right-3 text-2xl text-gray-500 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white close-modal"
-                aria-label="Close">&times;</button>
-        <div class="flex items-center mb-4">
-          <img class="h-16 w-16 object-cover rounded mr-3 border border-gray-200 dark:border-gray-700 details-logo"
-               src="" alt="Logo">
-          <div>
-            <h3 class="text-2xl font-semibold details-title"></h3>
-            <span class="text-sm font-medium text-gray-600 dark:text-gray-400 details-industry"></span>
-          </div>
-        </div>
-        <p class="text-sm text-gray-600 dark:text-gray-400 mb-2 italic details-tagline"></p>
-        <div class="flex space-x-4 mb-4">
-          <a id="modal-join-btn"
-             class="text-white text-sm font-medium px-3 py-1 rounded bg-blue-600 hover:bg-blue-700"
-             target="_blank">Join</a>
-          <div id="socials-container" class="relative inline-block text-left">
-            <button id="socials-btn"
-                    class="bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 text-sm font-medium px-3 py-1 rounded">
-              Socials <i class="fas fa-caret-down ml-1"></i>
-            </button>
-            <div id="socials-menu"
-                 class="invisible opacity-0 transition-opacity duration-200 absolute right-0 mt-2 w-48 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded shadow-lg z-50"></div>
-          </div>
-          <button id="contact-info-btn" type="button"
-                  class="bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 text-sm font-medium px-3 py-1 rounded">
-            Contact Info
-          </button>
-        </div>
-        <div class="border-b border-gray-200 dark:border-gray-700 mb-4 relative">
-          <nav id="tab-nav" class="flex space-x-4">
-            <button type="button"
-                    class="tab-button pb-2 px-3 text-sm font-medium text-gray-500 dark:text-gray-400 focus:outline-none"
-                    data-tab="overview">Overview</button>
-            <button type="button"
-                    class="tab-button pb-2 px-3 text-sm font-medium text-gray-500 dark:text-gray-400 focus:outline-none"
-                    data-tab="events">Events</button>
-          </nav>
-          <div id="tab-underline" class="absolute bottom-0 h-0.5 bg-blue-600 transition-all"></div>
-        </div>
-        <div id="overview" class="tab-content">
-          <p class="text-gray-700 dark:text-gray-300 mb-4 details-desc"></p>
-          <div class="flex flex-wrap gap-2 mb-4">
-            <span class="details-businesstype bg-teal-100 dark:bg-teal-900 text-teal-800 dark:text-teal-200 text-xs font-medium px-2.5 py-0.5 rounded"></span>
-            <span class="details-stage bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-xs font-medium px-2.5 py-0.5 rounded"></span>
-          </div>
-          <div class="space-y-2 mb-4">
-            <p class="flex items-center"><i class="fas fa-map-marker-alt mr-2 text-gray-600 dark:text-gray-400"></i><span class="details-school"></span></p>
-            <p class="flex items-center"><i class="fas fa-users mr-1 text-gray-600 dark:text-gray-400"></i><span class="details-members mr-1"></span> Members</p>
-          </div>
-          <p class="flex items-center"><i class="fas fa-comments mr-2 text-gray-600 dark:text-gray-400"></i><span class="details-comments">No comments yet</span></p>
-        </div>
-        <div id="events" class="tab-content hidden p-4 text-gray-600 dark:text-gray-400">No events yet</div>
-      </div>
-    </div>
-  </template>
-
-  <!-- CONTACT MODAL TEMPLATE -->
-  <template id="contact-modal-template">
-    <div class="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
-         role="dialog" aria-modal="true">
-      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg max-w-sm w-full p-6 relative">
-        <button type="button" class="absolute top-3 right-3 text-2xl text-gray-500 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white close-contact-modal" aria-label="Close">&times;</button>
-        <h3 class="text-xl font-semibold mb-4">Contact Information</h3>
-        <p><strong>Email:</strong> <a href="#" class="contact-email text-blue-600 dark:text-blue-400 hover:underline"></a></p>
-        <p class="mt-2"><strong>Form:</strong> <a href="#" class="contact-form text-blue-600 dark:text-blue-400 hover:underline" target="_blank"></a></p>
-      </div>
-    </div>
-  </template>
-
-  <!-- SIGN IN MODAL TEMPLATE -->
-  <template id="signin-modal-template">
-    <div class="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" role="dialog" aria-modal="true">
-      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg w-80 p-6 relative">
-        <button id="close-signin" type="button" class="absolute top-3 right-3 text-2xl text-gray-500 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white" aria-label="Close">&times;</button>
-        <h3 class="text-xl font-semibold mb-4">Sign In</h3>
-        <form id="signin-form" class="space-y-4">
-          <div>
-            <label class="block text-sm font-medium mb-1">Email</label>
-            <input id="signin-email" type="email" required class="w-full px-3 py-2 border rounded dark:bg-gray-700 dark:border-gray-600 focus:outline-none" placeholder="you@example.com"/>
-          </div>
-          <div>
-            <label class="block text-sm font-medium mb-1">Password</label>
-            <input id="signin-password" type="password" required class="w-full px-3 py-2 border rounded dark:bg-gray-700 dark:border-gray-600 focus:outline-none" placeholder="••••••••"/>
-          </div>
-          <p id="signin-error" class="text-red-600 text-sm hidden">Invalid email or password.</p>
-          <p id="signin-success" class="text-green-600 text-sm hidden">Login successful!</p>
-          <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">Sign In</button>
-        </form>
-      </div>
-    </div>
-  </template>
-
-  <!-- PROFILE DROPDOWN TEMPLATE -->
-  <template id="profile-dropdown-template">
-    <div id="profileDropdown" class="absolute right-0 mt-2 w-40 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded shadow-lg py-2 z-50 hidden">
-      <a data-key="Profile" href="#" class="block px-4 py-2 text-sm flex items-center hover:bg-gray-100 dark:hover:bg-gray-700">
-        <i class="fas fa-user mr-2"></i>Profile
-      </a>
-      <a data-key="Settings" href="#" class="block px-4 py-2 text-sm flex items-center hover:bg-gray-100 dark:hover:bg-gray-700">
-        <i class="fas fa-cog mr-2"></i>Settings
-      </a>
-      <a data-key="My Activities" href="#" class="block px-4 py-2 text-sm flex items-center hover:bg-gray-100 dark:hover:bg-gray-700">
-        <i class="fas fa-list mr-2"></i>My Activities
-      </a>
-      <a href="#" id="logoutBtn" class="block px-4 py-2 text-sm flex items-center hover:bg-gray-100 dark:hover:bg-gray-700">
-        <i class="fas fa-sign-out-alt mr-2"></i>Logout
-      </a>
-    </div>
-  </template>
-
-  <!-- PROFILE MODAL TEMPLATE -->
-  <template id="profile-modal-template">
-    <div class="profile-modal-overlay fixed z-30 bg-white dark:bg-gray-800 overflow-auto">
-      <div class="relative h-full w-full p-6">
-        <button type="button" class="close-profile-modal absolute top-4 left-4 bg-blue-600 text-white px-3 py-1 rounded inline-flex items-center hover:bg-blue-700">
-          <i class="fas fa-arrow-left mr-2"></i>Back to Activity Hub
-        </button>
-        <div class="flex flex-col items-center mt-12 space-y-4">
-          <img src="" alt="Profile Picture" class="profile-pic h-24 w-24 rounded-full border-2 border-gray-200 dark:border-gray-700" />
-          <h2 class="profile-name text-2xl font-semibold"></h2>
-          <div class="flex flex-wrap justify-center gap-2">
-            <span class="inline-flex items-center bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200 text-xs font-medium px-3 py-1 rounded-full">
-              <i class="fas fa-school mr-1"></i><span class="profile-school"></span>
-            </span>
-            <span class="inline-flex items-center bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-xs font-medium px-3 py-1 rounded-full">
-              <i class="fas fa-graduation-cap mr-1"></i><span class="profile-major"></span>
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </template>
-
-  <!-- LOGOUT CONFIRMATION TEMPLATE -->
-  <template id="logout-confirmation-template">
-    <div class="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 w-80">
-        <h3 class="text-lg font-semibold mb-4">Confirm Logout</h3>
-        <p class="text-sm text-gray-700 dark:text-gray-300">Are you sure you want to log out?</p>
-        <div class="mt-6 flex justify-end space-x-2">
-          <button id="logout-confirm-cancel" type="button" class="px-4 py-2 rounded bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200">Cancel</button>
-          <button id="logout-confirm-yes" type="button" class="px-4 py-2 rounded bg-red-600 hover:bg-red-700 text-white">Log Out</button>
-        </div>
-      </div>
-    </div>
-  </template>
-
-  <!-- MAIN SCRIPT -->
-  <script defer>
-    const LINK_API = 'https://sheet2api.com/v1/rhBSJNTTYKgC/hyperlinks';
-    const API      = 'https://sheet2api.com/v1/an4oVvpQR51V/mock-data-new';
-    const AUTH_API = 'https://sheet2api.com/v1/rkmbUqHQAC3C/submission-form-responses';
-    let linkMap = {};
-
-    document.addEventListener('DOMContentLoaded', () => {
-      // THEME SETUP
-      const htmlEl     = document.documentElement;
-      const themeToggle = document.getElementById('darkToggle');
-      const themeIcon   = document.getElementById('darkIcon');
-      const storedTheme = localStorage.getItem('theme');
-      if (storedTheme === 'dark') {
-        htmlEl.classList.add('dark');
-        themeToggle.checked = true;
-        themeIcon.classList.replace('fa-moon','fa-sun');
+      if (input === correctPasscode) {
+        window.location.href = "https://activityhub-demo.example.com"; // change this!
       } else {
-        htmlEl.classList.remove('dark');
-        themeToggle.checked = false;
-        themeIcon.classList.replace('fa-sun','fa-moon');
+        errorDiv.textContent = "Incorrect passcode. Please try again.";
       }
-
-      // LOAD NAV LINKS
-      fetch(LINK_API)
-        .then(r => r.json())
-        .then(arr => { linkMap = arr[0]; applyLinks(); })
-        .catch(console.error);
-
-      // RESTORE SESSION
-      const stored = localStorage.getItem('currentUser');
-      if (stored) {
-        try { initAuth(JSON.parse(stored)); }
-        catch { localStorage.removeItem('currentUser'); }
-      }
-
-      // FETCH & RENDER ITEMS
-      fetch(API)
-        .then(r => r.json())
-        .then(items => {
-          const titles = { 'Clubs & Orgs':'Clubs','Business':'Businesses','Other Projects':'Projects' };
-          Object.entries(titles).forEach(([ptype, heading]) => {
-            const sec  = document.getElementById('section-template').content.cloneNode(true);
-            sec.querySelector('h2').textContent = heading;
-            const grid = sec.querySelector('div');
-            items.filter(i => i["Project Type"] === ptype).forEach(item => {
-              const card = document.getElementById('card-template').content.cloneNode(true);
-              card.querySelector('img').src              = item["Logo URL"];
-              card.querySelector('h3').textContent       = item["Project Title"];
-              card.querySelector('.tagline').textContent = item.Tagline;
-              const bt = card.querySelector('.business-type');
-              if (ptype==='Business' && item["Business Type"]) bt.textContent = item["Business Type"];
-              else bt.remove();
-              card.querySelector('.industry').textContent = item.Industry;
-              const st = card.querySelector('.stage');
-              if (item.Stage) st.textContent = item.Stage; else st.remove();
-              card.querySelector('.school').textContent  = item["College or University Name"];
-              card.querySelector('.members').textContent = item["Number of participants"];
-              card.querySelector('.card').addEventListener('click', ()=> showDetails(item));
-              grid.append(card);
-            });
-            document.getElementById('content').append(sec);
-          });
-        }).catch(console.error);
-    });
-
-    // APPLY LINKS HELPER
-    function applyLinks() {
-      Object.entries(linkMap).forEach(([key, url]) => {
-        document.querySelectorAll(`a[data-key="${key}"]`)
-                .forEach(a => a.href = url);
-      });
     }
-
-    // AUTH INITIALIZATION
-    function initAuth(u) {
-      window.currentUser = u;
-      localStorage.setItem('currentUser', JSON.stringify(u));
-      const ac = document.getElementById('authContainer');
-      ac.innerHTML = `
-        <a data-key="Upload Activity" href="#" class="text-gray-600 dark:text-gray-300 mr-4 hover:text-gray-800 dark:hover:text-white">
-          <i class="fas fa-plus-circle fa-lg"></i>
-        </a>
-        <button id="notificationsBtn" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white mr-4">
-          <i class="fas fa-bell fa-lg"></i>
-        </button>
-        <span class="font-medium dark:text-gray-100 mr-4">${u["First Name"]}</span>
-        <div id="pfpContainer" class="relative">
-          <img id="pfpBtn" src="${u["Profile Picture"]}"
-               alt="You"
-               class="h-10 w-10 rounded-full border-2 border-gray-200 dark:border-gray-700 cursor-pointer"/>
-          ${document.getElementById('profile-dropdown-template').innerHTML}
-        </div>
-        <button id="mobileMenuBtn" class="md:hidden text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white">
-          <i class="fas fa-ellipsis-v fa-lg"></i>
-        </button>
-      `;
-      applyLinks();
-
-      // PROFILE DROPDOWN
-      const dd = document.getElementById('profileDropdown');
-      document.getElementById('pfpBtn').addEventListener('click', e => {
-        e.stopPropagation();
-        dd.classList.toggle('hidden');
-      });
-      document.addEventListener('click', () => dd.classList.add('hidden'));
-
-      // LOGOUT
-      document.getElementById('logoutBtn').addEventListener('click', e => {
-        e.preventDefault();
-        showLogoutConfirmation();
-      });
-    }
-
-    // RESPONSIVE SIDEBAR & DESKTOP COLLAPSE
-    document.getElementById('toggleBtn').addEventListener('click', () => {
-      const sb        = document.getElementById('sidebar');
-      const mn        = document.getElementById('main');
-      const isMobile  = window.innerWidth < 768;
-
-      if (isMobile) {
-        const hidden = sb.classList.contains('-translate-x-full');
-        sb.classList.toggle('translate-x-0', hidden);
-        sb.classList.toggle('-translate-x-full', !hidden);
-        document.getElementById('toggleBtn').setAttribute('aria-expanded', String(hidden));
-      } else {
-        const lbl = document.getElementById('darkToggleLabel');
-        const txt = document.getElementById('darkToggleText');
-        if (sb.classList.contains('w-48')) {
-          sb.classList.replace('w-48','w-16');
-          mn.classList.replace('md:ml-48','md:ml-16');
-          document.querySelectorAll('#sidebar span').forEach(s => s.classList.add('hidden'));
-          lbl.classList.add('hidden'); txt.classList.add('hidden');
-        } else {
-          sb.classList.replace('w-16','w-48');
-          mn.classList.replace('md:ml-16','md:ml-48');
-          document.querySelectorAll('#sidebar span').forEach(s => s.classList.remove('hidden'));
-          lbl.classList.remove('hidden'); txt.classList.remove('hidden');
-        }
-      }
-    });
-
-    // DARK MODE TOGGLE
-    document.getElementById('darkToggle').addEventListener('change', e => {
-      const htmlEl = document.documentElement;
-      const di     = document.getElementById('darkIcon');
-      if (e.target.checked) {
-        htmlEl.classList.add('dark');
-        di.classList.replace('fa-moon','fa-sun');
-        localStorage.setItem('theme','dark');
-      } else {
-        htmlEl.classList.remove('dark');
-        di.classList.replace('fa-sun','fa-moon');
-        localStorage.setItem('theme','light');
-      }
-    });
-    document.getElementById('darkIcon').addEventListener('click', () => {
-      const inp = document.getElementById('darkToggle');
-      inp.checked = !inp.checked;
-      inp.dispatchEvent(new Event('change'));
-    });
-
-    // SIGN-IN LOGIC
-    document.getElementById('signInBtn').addEventListener('click', () => {
-      const tpl = document.getElementById('signin-modal-template').content.cloneNode(true);
-      const m   = tpl.querySelector('.modal-overlay');
-      document.body.append(m);
-
-      const form    = m.querySelector('#signin-form');
-      const emailIn = m.querySelector('#signin-email');
-      const passIn  = m.querySelector('#signin-password');
-      const err     = m.querySelector('#signin-error');
-      const ok      = m.querySelector('#signin-success');
-
-      m.querySelector('#close-signin').onclick = () => m.remove();
-      m.addEventListener('click', e => e.target===m && m.remove());
-
-      form.addEventListener('submit', e => {
-        e.preventDefault();
-        err.classList.add('hidden');
-        ok.classList.add('hidden');
-
-        fetch(AUTH_API)
-          .then(r => r.json())
-          .then(users => {
-            const u = users.find(u =>
-              u.Email === emailIn.value.trim() && u.Password === passIn.value
-            );
-            if (!u) {
-              err.classList.remove('hidden');
-              return;
-            }
-            ok.classList.remove('hidden');
-            setTimeout(() => {
-              m.remove();
-              initAuth(u);
-            }, 500);
-          })
-          .catch(() => {
-            err.textContent='Network error';
-            err.classList.remove('hidden');
-          });
-      });
-    });
-
-    // LOGOUT CONFIRMATION
-    function showLogoutConfirmation() {
-      const tpl   = document.getElementById('logout-confirmation-template').content.cloneNode(true);
-      const modal = tpl.querySelector('.modal-overlay');
-      document.body.append(modal);
-
-      modal.querySelector('#logout-confirm-cancel').addEventListener('click', () => modal.remove());
-      modal.querySelector('#logout-confirm-yes').addEventListener('click', () => {
-        localStorage.removeItem('currentUser');
-        location.reload();
-      });
-    }
-
-    // DETAILS MODAL
-    function showDetails(item) {
-      const tpl   = document.getElementById('details-modal-template').content.cloneNode(true);
-      const modal = tpl.querySelector('.modal-overlay');
-      modal.querySelector('.details-logo').src        = item["Logo URL"];
-      modal.querySelector('.details-title').textContent    = item["Project Title"];
-      modal.querySelector('.details-industry').textContent = item.Industry;
-      modal.querySelector('.details-tagline').textContent  = item.Tagline;
-      modal.querySelector('.details-desc').textContent     = item.Description;
-      modal.querySelector('.details-school').textContent   = item["College or University Name"];
-      modal.querySelector('.details-members').textContent  = item["Number of participants"];
-      const bt = modal.querySelector('.details-businesstype');
-      if (item["Business Type"]) bt.textContent=item["Business Type"]; else bt.remove();
-      const ds = modal.querySelector('.details-stage');
-      if (item.Stage) ds.textContent=item.Stage; else ds.remove();
-
-      const socialMap = {
-        website:'Website', instagram:'Instagram', linkedin:'LinkedIn',
-        youtube:'YouTube', tiktok:'TikTok', github:'GitHub',
-        discord:'Discord', groupme:'GroupMe', twitter:'Twitter',
-        linktree:'LinkTree'
-      };
-      const menu = modal.querySelector('#socials-menu');
-      let count = 0;
-      Object.values(socialMap).forEach(label => {
-        const url = item[label];
-        if (url) {
-          const a = document.createElement('a');
-          a.className='block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 text-sm';
-          a.href=url; a.target='_blank'; a.textContent=label;
-          menu.append(a); count++;
-        }
-      });
-      if (!count) modal.querySelector('#socials-container').style.display='none';
-
-      const jb = modal.querySelector('#modal-join-btn');
-      if (!item["Join Form"]) jb.classList.add('bg-gray-400','cursor-not-allowed');
-
-      const cb = modal.querySelector('#contact-info-btn');
-      if (item["Project Contact Email"]||item["Contact Form"]) {
-        cb.addEventListener('click', e=>{ e.stopPropagation(); showContact(item); });
-      } else {
-        cb.classList.add('opacity-50','cursor-not-allowed');
-      }
-
-      [modal.querySelector('#socials-btn'), menu].forEach(el=>{
-        el.addEventListener('mouseenter', ()=>{
-          clearTimeout(window.__to);
-          menu.classList.remove('invisible','opacity-0');
-        });
-        el.addEventListener('mouseleave', ()=>{
-          window.__to = setTimeout(()=>{
-            menu.classList.add('invisible','opacity-0');
-          }, 300);
-        });
-      });
-
-      document.body.append(modal);
-      modal.querySelector('.close-modal').onclick = ()=> modal.remove();
-
-      const nav=modal.querySelector('#tab-nav'), ul=modal.querySelector('#tab-underline');
-      nav.querySelectorAll('.tab-button').forEach(btn=>{
-        btn.addEventListener('click', ()=>{
-          nav.querySelectorAll('.tab-button').forEach(b=>b.classList.replace('text-blue-600','text-gray-500'));
-          btn.classList.replace('text-gray-500','text-blue-600');
-          ul.style.width=btn.offsetWidth+'px'; ul.style.left=btn.offsetLeft+'px';
-          modal.querySelectorAll('.tab-content').forEach(c=>c.classList.add('hidden'));
-          modal.querySelector('#'+btn.dataset.tab).classList.remove('hidden');
-        });
-      });
-      nav.querySelector('.tab-button').click();
-    }
-
-    // CONTACT MODAL
-    function showContact(item) {
-      const tpl = document.getElementById('contact-modal-template').content.cloneNode(true);
-      const cm  = tpl.querySelector('.modal-overlay');
-      const em  = cm.querySelector('.contact-email');
-      const fm  = cm.querySelector('.contact-form');
-      if (item["Project Contact Email"]) {
-        em.href=`mailto:${item["Project Contact Email"]}`; em.textContent=item["Project Contact Email"];
-      }
-      if (item["Contact Form"]) {
-        fm.href=item["Contact Form"]; fm.textContent='Open Form';
-      }
-      document.body.append(cm);
-      cm.querySelector('.close-contact-modal').onclick = ()=> cm.remove();
-    }
-
-    // PROFILE MODAL
-    function showProfileModal() {
-      const tpl     = document.getElementById('profile-modal-template').content.cloneNode(true);
-      const modal   = tpl.querySelector('.profile-modal-overlay');
-      const header  = document.querySelector('header');
-      const sidebar = document.getElementById('sidebar');
-      modal.style.top    = header.offsetHeight + 'px';
-      modal.style.left   = sidebar.offsetWidth + 'px';
-      modal.style.right  = '0';
-      modal.style.bottom = '0';
-      modal.querySelector('.profile-pic').src         = currentUser["Profile Picture"];
-      modal.querySelector('.profile-name').textContent  = `${currentUser["First Name"]} ${currentUser["Last Name"]}`;
-      modal.querySelector('.profile-school').textContent = currentUser["College or University Name"];
-      modal.querySelector('.profile-major').textContent  = currentUser.Major;
-      modal.querySelector('.close-profile-modal')
-           .addEventListener('click', () => modal.remove());
-      document.body.append(modal);
-    }
-
-    // PROFILE LINK CLICK
-    document.addEventListener('click', e=>{
-      if (e.target.matches('[data-key="Profile"]')) {
-        e.preventDefault();
-        showProfileModal();
-      }
-    });
-
-    // MOBILE MENU TOGGLES
-    document.getElementById('mobileMenuBtn').addEventListener('click', () => {
-      document.getElementById('mobileMenu').classList.toggle('translate-y-full');
-    });
-    document.getElementById('notificationsBtnMobile').addEventListener('click', () => {
-      document.getElementById('notificationsBtn')?.click();
-      document.getElementById('mobileMenu').classList.add('translate-y-full');
-    });
-    document.getElementById('profileMenuBtnMobile').addEventListener('click', () => {
-      document.getElementById('pfpBtn')?.click();
-      document.getElementById('mobileMenu').classList.add('translate-y-full');
-    });
   </script>
 </body>
 </html>
