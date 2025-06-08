@@ -5,6 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>News – Activity Hub</title>
 
+  <!-- Favicon -->
+  <link rel="icon" href="https://i.imgur.com/xjx5Bg8.png" type="image/png" />
+  <link rel="shortcut icon" href="https://i.imgur.com/xjx5Bg8.png" type="image/png" />
+
+  <!-- Open Graph -->
+  <meta property="og:title"       content="Activity Hub | News" />
+  <meta property="og:description" content="Stay up-to-date with the latest news, updates, and announcements from Activity Hub." />
+  <meta property="og:image"       content="https://i.imgur.com/34hmlAn.png" />
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://activity-hub-official.github.io/Company/News.html" />
+
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Font Awesome -->
@@ -35,7 +46,7 @@
       </nav>
 
       <!-- CTA -->
-      <a id="cta-button" href="#"
+      <a id="cta-button"
          class="ml-4 inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-full text-sm sm:text-base">
         Visit Activity Hub
       </a>
@@ -113,131 +124,100 @@
         .then(response => response.json())
         .then(data => {
           const links = data[0];
+          const landingURL = links['ActivityHub.com'] !== 'link not defined'
+                            ? links['ActivityHub.com']
+                            : '#';
+
+          // Logo & CTA
+          document.getElementById('logo-link').href = landingURL;
+          document.getElementById('footer-logo-link').href = landingURL;
+          document.getElementById('cta-button').href = landingURL;
 
           // Populate Navbar (Desktop & Mobile)
           const desktopNav = document.getElementById('desktop-nav');
-          const mobileNav = document.getElementById('mobile-nav');
+          const mobileNav  = document.getElementById('mobile-nav');
           const navItems = [
             { text: 'Company', key: 'ActivityHub.com' },
-            { text: 'About', key: 'About Us' },
+            { text: 'About',   key: 'About Us' },
             { text: 'Careers', key: 'Career' },
-            { text: 'News', key: 'News' }
+            { text: 'News',    key: 'News' }
           ];
           navItems.forEach(item => {
             const url = links[item.key] || '#';
             const href = url !== 'link not defined' ? url : '#';
 
             // Desktop link
-            const aDesktop = document.createElement('a');
-            aDesktop.href = href;
-            aDesktop.className = 'hover:text-blue-600';
-            aDesktop.textContent = item.text;
-            // Highlight "News"
+            const aDesk = document.createElement('a');
+            aDesk.href = href;
+            aDesk.className = 'hover:text-blue-600';
+            aDesk.textContent = item.text;
             if (item.text === 'News') {
-              aDesktop.classList.add('border-b-2', 'border-blue-600', 'pb-1');
+              aDesk.classList.add('border-b-2', 'border-blue-600', 'pb-1');
             }
-            desktopNav.appendChild(aDesktop);
+            desktopNav.appendChild(aDesk);
 
             // Mobile link
-            const aMobile = document.createElement('a');
-            aMobile.href = href;
-            aMobile.className = 'text-gray-800 font-medium text-sm';
-            aMobile.textContent = item.text;
-            mobileNav.appendChild(aMobile);
+            const aMob = document.createElement('a');
+            aMob.href = href;
+            aMob.className = 'text-gray-800 font-medium text-sm';
+            aMob.textContent = item.text;
+            mobileNav.appendChild(aMob);
           });
 
-          // Logo links (Navbar & Footer) to landing page
-          const landingURL = links['ActivityHub.com'] !== 'link not defined' ? links['ActivityHub.com'] : '#';
-          document.getElementById('logo-link').href = landingURL;
-          document.getElementById('footer-logo-link').href = landingURL;
-
-          // CTA button link (Visit Activity Hub)
-          const ctaButton = document.getElementById('cta-button');
-          ctaButton.href = landingURL;
-
-          // Populate Footer Company
-          const footerCompany = document.getElementById('footer-company-links');
-          const companyItems = [
+          // Populate Footer Company, Community, Privacy & Socials (same as Careers page)
+          const fillLinks = (id, items) => {
+            const ul = document.getElementById(id);
+            items.forEach(i => {
+              const url = links[i.key] || '#';
+              const href = url !== 'link not defined' ? url : '#';
+              const li = document.createElement('li');
+              const a  = document.createElement('a');
+              a.href      = href;
+              a.className = 'text-gray-700 hover:text-blue-600';
+              a.textContent = i.text;
+              li.appendChild(a);
+              ul.appendChild(li);
+            });
+          };
+          fillLinks('footer-company-links', [
             { text: 'Activity Hub', key: 'Activity Hub' },
-            { text: 'About Us', key: 'About Us' },
-            { text: 'Career', key: 'Career' },
-            { text: 'Partners', key: 'Partners' },
-            { text: 'Press & Media', key: 'Press & Media' },
-            { text: 'News', key: 'News' }
-          ];
-          companyItems.forEach(item => {
-            const url = links[item.key] || '#';
-            const href = url !== 'link not defined' ? url : '#';
-            const li = document.createElement('li');
-            const a = document.createElement('a');
-            a.href = href;
-            a.className = 'text-gray-700 hover:text-blue-600';
-            a.textContent = item.text;
-            li.appendChild(a);
-            footerCompany.appendChild(li);
-          });
-
-          // Populate Footer Community
-          const footerCommunity = document.getElementById('footer-community-links');
-          const communityItems = [
-            { text: 'ActivityHub.com', key: 'ActivityHub.com' },
-            { text: 'Activity Hub Rules', key: 'Activity Hub Rules' },
-            { text: 'Help Center', key: 'Help Center' }
-          ];
-          communityItems.forEach(item => {
-            const url = links[item.key] || '#';
-            const href = url !== 'link not defined' ? url : '#';
-            const li = document.createElement('li');
-            const a = document.createElement('a');
-            a.href = href;
-            a.className = 'text-gray-700 hover:text-blue-600';
-            a.textContent = item.text;
-            li.appendChild(a);
-            footerCommunity.appendChild(li);
-          });
-
-          // Populate Footer Privacy & Safety
-          const footerPrivacy = document.getElementById('footer-privacy-links');
-          const privacyItems = [
+            { text: 'About Us',     key: 'About Us' },
+            { text: 'Career',       key: 'Career' },
+            { text: 'Partners',     key: 'Partners' },
+            { text: 'Press & Media',key: 'Press & Media' },
+            { text: 'News',         key: 'News' }
+          ]);
+          fillLinks('footer-community-links', [
+            { text: 'ActivityHub.com',   key: 'ActivityHub.com' },
+            { text: 'Activity Hub Rules',key: 'Activity Hub Rules' },
+            { text: 'Help Center',       key: 'Help Center' }
+          ]);
+          fillLinks('footer-privacy-links', [
             { text: 'User Agreement', key: 'User Agreement' },
             { text: 'Privacy Policy', key: 'Privacy Policy' },
             { text: 'Content Policy', key: 'Content Policy' }
-          ];
-          privacyItems.forEach(item => {
-            const url = links[item.key] || '#';
-            const href = url !== 'link not defined' ? url : '#';
-            const li = document.createElement('li');
-            const a = document.createElement('a');
-            a.href = href;
-            a.className = 'text-gray-700 hover:text-blue-600';
-            a.textContent = item.text;
-            li.appendChild(a);
-            footerPrivacy.appendChild(li);
-          });
+          ]);
 
-          // Populate Social Links (larger icons)
+          // Social icons
           const socialContainer = document.getElementById('social-links');
-          const socialItems = [
+          [
             { key: 'Instagram', icon: 'fab fa-instagram' },
             { key: 'X (Twitter)', icon: 'fab fa-twitter' },
             { key: 'YouTube', icon: 'fab fa-youtube' },
             { key: 'TikTok', icon: 'fab fa-tiktok' },
             { key: 'LinkedIn', icon: 'fab fa-linkedin' }
-          ];
-          socialItems.forEach(item => {
-            const url = links[item.key] || '#';
+          ].forEach(i => {
+            const url  = links[i.key] || '#';
             const href = url !== 'link not defined' ? url : '#';
-            const a = document.createElement('a');
-            a.href = href;
-            a.target = '_blank';
+            const a    = document.createElement('a');
+            a.href      = href;
+            a.target    = '_blank';
             a.className = 'text-gray-600 hover:text-blue-600';
-            a.innerHTML = `<i class="${item.icon} text-2xl"></i>`;
+            a.innerHTML = `<i class="${i.icon} text-2xl"></i>`;
             socialContainer.appendChild(a);
           });
         })
-        .catch(error => {
-          console.error('Error fetching links:', error);
-        });
+        .catch(err => console.error('Error fetching links:', err));
     });
   </script>
 </body>

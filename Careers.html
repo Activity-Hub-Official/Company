@@ -5,6 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Careers – Activity Hub</title>
 
+  <!-- Favicon -->
+  <link rel="icon" href="https://i.imgur.com/xjx5Bg8.png" type="image/png" />
+  <link rel="shortcut icon" href="https://i.imgur.com/xjx5Bg8.png" type="image/png" />
+
+  <!-- Open Graph -->
+  <meta property="og:title"       content="Activity Hub | Careers" />
+  <meta property="og:description" content="Join the Activity Hub team—help shape campus innovation. Explore ambassador and full-time opportunities built around students." />
+  <meta property="og:image"       content="https://i.imgur.com/34hmlAn.png" />
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://activity-hub-official.github.io/Company/Careers.html" />
+
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Font Awesome -->
@@ -35,7 +46,7 @@
       </nav>
 
       <!-- CTA -->
-      <a id="cta-button" href="#"
+      <a id="cta-button"
          class="ml-4 inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-full text-sm sm:text-base">
         Visit Activity Hub
       </a>
@@ -91,7 +102,7 @@
             <li>Stipend + campus ambassador swag</li>
             <li>Direct mentorship from the founder</li>
           </ul>
-          <a href="https://forms.gle/your-form-link" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2 rounded-lg transition">
+          <a href="https://forms.gle/your-form-link" target="_blank" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2 rounded-lg transition">
             Apply Now
           </a>
         </div>
@@ -138,23 +149,17 @@
         <!-- Company Links -->
         <div>
           <h4 class="text-lg font-semibold mb-2">Company</h4>
-          <ul id="footer-company-links" class="space-y-2">
-            <!-- Populated via JavaScript -->
-          </ul>
+          <ul id="footer-company-links" class="space-y-2"></ul>
         </div>
         <!-- Community Links -->
         <div>
           <h4 class="text-lg font-semibold mb-2">Community</h4>
-          <ul id="footer-community-links" class="space-y-2">
-            <!-- Populated via JavaScript -->
-          </ul>
+          <ul id="footer-community-links" class="space-y-2"></ul>
         </div>
         <!-- Privacy & Safety Links -->
         <div>
           <h4 class="text-lg font-semibold mb-2">Privacy &amp; Safety</h4>
-          <ul id="footer-privacy-links" class="space-y-2">
-            <!-- Populated via JavaScript -->
-          </ul>
+          <ul id="footer-privacy-links" class="space-y-2"></ul>
         </div>
       </div>
       <p class="text-center text-gray-600 text-xs sm:text-sm">&copy; 2025 Activity Hub, Inc. All rights reserved.</p>
@@ -170,8 +175,16 @@
         .then(response => response.json())
         .then(data => {
           const links = data[0];
+          const landingURL = links['ActivityHub.com'] !== 'link not defined'
+                            ? links['ActivityHub.com']
+                            : '#';
 
-          // Populate Navbar (Desktop & Mobile)
+          // Logo & CTA
+          document.getElementById('logo-link').href = landingURL;
+          document.getElementById('footer-logo-link').href = landingURL;
+          document.getElementById('cta-button').href = landingURL;
+
+          // Nav items
           const desktopNav = document.getElementById('desktop-nav');
           const mobileNav = document.getElementById('mobile-nav');
           const navItems = [
@@ -184,117 +197,70 @@
             const url = links[item.key] || '#';
             const href = url !== 'link not defined' ? url : '#';
 
-            // Desktop link
-            const aDesktop = document.createElement('a');
-            aDesktop.href = href;
-            aDesktop.className = 'hover:text-blue-600';
-            aDesktop.textContent = item.text;
-            // Highlight "Careers"
-            if (item.text === 'Careers') {
-              aDesktop.classList.add('border-b-2', 'border-blue-600', 'pb-1');
-            }
-            desktopNav.appendChild(aDesktop);
+            // Desktop
+            const aD = document.createElement('a');
+            aD.href = href;
+            aD.className = 'hover:text-blue-600';
+            aD.textContent = item.text;
+            if(item.text==='Careers') aD.classList.add('border-b-2','border-blue-600','pb-1');
+            desktopNav.appendChild(aD);
 
-            // Mobile link
-            const aMobile = document.createElement('a');
-            aMobile.href = href;
-            aMobile.className = 'text-gray-800 font-medium text-sm';
-            aMobile.textContent = item.text;
-            mobileNav.appendChild(aMobile);
+            // Mobile
+            const aM = document.createElement('a');
+            aM.href = href;
+            aM.className = 'text-gray-800 font-medium text-sm';
+            aM.textContent = item.text;
+            mobileNav.appendChild(aM);
           });
 
-          // Logo links (Navbar & Footer) to landing page
-          const landingURL = links['ActivityHub.com'] !== 'link not defined' ? links['ActivityHub.com'] : '#';
-          document.getElementById('logo-link').href = landingURL;
-          document.getElementById('footer-logo-link').href = landingURL;
+          // Footer link groups
+          const fillLinks = (id, items) => {
+            const ul = document.getElementById(id);
+            items.forEach(i=>{
+              const url = links[i.key]||'#';
+              const href = url!=='link not defined'?url:'#';
+              const li = document.createElement('li');
+              const a = document.createElement('a');
+              a.href=href; a.className='text-gray-700 hover:text-blue-600'; a.textContent=i.text;
+              li.appendChild(a); ul.appendChild(li);
+            });
+          };
+          fillLinks('footer-company-links',[
+            {text:'Activity Hub',key:'Activity Hub'},
+            {text:'About Us',key:'About Us'},
+            {text:'Career',key:'Career'},
+            {text:'Partners',key:'Partners'},
+            {text:'Press & Media',key:'Press & Media'},
+            {text:'News',key:'News'}
+          ]);
+          fillLinks('footer-community-links',[
+            {text:'ActivityHub.com',key:'ActivityHub.com'},
+            {text:'Activity Hub Rules',key:'Activity Hub Rules'},
+            {text:'Help Center',key:'Help Center'}
+          ]);
+          fillLinks('footer-privacy-links',[
+            {text:'User Agreement',key:'User Agreement'},
+            {text:'Privacy Policy',key:'Privacy Policy'},
+            {text:'Content Policy',key:'Content Policy'}
+          ]);
 
-          // CTA button link (Visit Activity Hub)
-          const ctaButton = document.getElementById('cta-button');
-          ctaButton.href = landingURL;
-
-          // Populate Footer Company
-          const footerCompany = document.getElementById('footer-company-links');
-          const companyItems = [
-            { text: 'Activity Hub', key: 'Activity Hub' },
-            { text: 'About Us', key: 'About Us' },
-            { text: 'Career', key: 'Career' },
-            { text: 'Partners', key: 'Partners' },
-            { text: 'Press & Media', key: 'Press & Media' },
-            { text: 'News', key: 'News' }
-          ];
-          companyItems.forEach(item => {
-            const url = links[item.key] || '#';
-            const href = url !== 'link not defined' ? url : '#';
-            const li = document.createElement('li');
-            const a = document.createElement('a');
-            a.href = href;
-            a.className = 'text-gray-700 hover:text-blue-600';
-            a.textContent = item.text;
-            li.appendChild(a);
-            footerCompany.appendChild(li);
-          });
-
-          // Populate Footer Community
-          const footerCommunity = document.getElementById('footer-community-links');
-          const communityItems = [
-            { text: 'ActivityHub.com', key: 'ActivityHub.com' },
-            { text: 'Activity Hub Rules', key: 'Activity Hub Rules' },
-            { text: 'Help Center', key: 'Help Center' }
-          ];
-          communityItems.forEach(item => {
-            const url = links[item.key] || '#';
-            const href = url !== 'link not defined' ? url : '#';
-            const li = document.createElement('li');
-            const a = document.createElement('a');
-            a.href = href;
-            a.className = 'text-gray-700 hover:text-blue-600';
-            a.textContent = item.text;
-            li.appendChild(a);
-            footerCommunity.appendChild(li);
-          });
-
-          // Populate Footer Privacy & Safety
-          const footerPrivacy = document.getElementById('footer-privacy-links');
-          const privacyItems = [
-            { text: 'User Agreement', key: 'User Agreement' },
-            { text: 'Privacy Policy', key: 'Privacy Policy' },
-            { text: 'Content Policy', key: 'Content Policy' }
-          ];
-          privacyItems.forEach(item => {
-            const url = links[item.key] || '#';
-            const href = url !== 'link not defined' ? url : '#';
-            const li = document.createElement('li');
-            const a = document.createElement('a');
-            a.href = href;
-            a.className = 'text-gray-700 hover:text-blue-600';
-            a.textContent = item.text;
-            li.appendChild(a);
-            footerPrivacy.appendChild(li);
-          });
-
-          // Populate Social Links (larger icons)
+          // Social icons
           const socialContainer = document.getElementById('social-links');
-          const socialItems = [
-            { key: 'Instagram', icon: 'fab fa-instagram' },
-            { key: 'X (Twitter)', icon: 'fab fa-twitter' },
-            { key: 'YouTube', icon: 'fab fa-youtube' },
-            { key: 'TikTok', icon: 'fab fa-tiktok' },
-            { key: 'LinkedIn', icon: 'fab fa-linkedin' }
-          ];
-          socialItems.forEach(item => {
-            const url = links[item.key] || '#';
-            const href = url !== 'link not defined' ? url : '#';
-            const a = document.createElement('a');
-            a.href = href;
-            a.target = '_blank';
-            a.className = 'text-gray-600 hover:text-blue-600';
-            a.innerHTML = `<i class="${item.icon} text-2xl"></i>`;
+          [
+            {key:'Instagram',icon:'fab fa-instagram'},
+            {key:'X (Twitter)',icon:'fab fa-twitter'},
+            {key:'YouTube',icon:'fab fa-youtube'},
+            {key:'TikTok',icon:'fab fa-tiktok'},
+            {key:'LinkedIn',icon:'fab fa-linkedin'}
+          ].forEach(i=>{
+            const url=links[i.key]||'#', href=url!=='link not defined'?url:'#';
+            const a=document.createElement('a');
+            a.href=href; a.target='_blank'; a.className='text-gray-600 hover:text-blue-600';
+            a.innerHTML=`<i class="${i.icon} text-2xl"></i>`;
             socialContainer.appendChild(a);
           });
         })
-        .catch(error => {
-          console.error('Error fetching links:', error);
-        });
+        .catch(err=>console.error('Error fetching links:',err));
     });
   </script>
 </body>
