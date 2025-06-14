@@ -9,80 +9,71 @@
   <title>Activity Hub</title>
   <link rel="icon" href="https://i.imgur.com/EsNcDyR.png" />
 
-  <!-- Tailwind & Inter -->
+  <!-- Tailwind, Inter, Font Awesome -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
   <style>
-    :root {
-      --banner-height: 76px; /* 8px top + 60px icon + 8px bottom */
-    }
-    /* Banner: mobile only */
-    #smart-app-banner { 
-      display: flex;
-      position: fixed; top: 0; left: 0; right: 0;
-      background: #E6F2FF; padding: 8px 16px;
-      align-items: center; z-index: 50;
-      transform: translateY(0); transition: transform .3s ease;
-      font-family: 'Inter', sans-serif;
-    }
-    @media(min-width:1024px){
-      #smart-app-banner { display: none !important; }
-    }
-
-    /* Body padding pushed down by banner on mobile */
+    :root { --banner-height: 76px; }
     body {
       margin: 0;
       padding-top: var(--banner-height);
-      transition: padding-top .3s ease;
       font-family: 'Inter', sans-serif;
+      transition: padding-top .3s;
     }
-    @media(min-width:1024px){
-      body { padding-top: 0 !important; }
-    }
+    @media(min-width:1024px){ body { padding-top:0!important; } }
 
-    /* Navbar positioning */
-    header {
-      position: fixed; top: var(--banner-height); left: 0; right: 0; width: 100%;
-      background: #fff; border-bottom: 1px solid #E5E7EB; z-index: 40;
-      transition: top .3s ease;
+    /* Mobile Smart App Banner */
+    #smart-app-banner {
+      display: flex;
+      position: fixed; top:0; left:0; right:0;
+      background:#E6F2FF; padding:8px 16px;
+      align-items:center; z-index:50;
+      transform:translateY(0); transition:transform .3s;
     }
-    @media(min-width:1024px){
-      header { top: 0 !important; }
-    }
+    @media(min-width:1024px){ #smart-app-banner { display:none!important; } }
 
-    /* Banner contents */
-    #smart-app-banner .sab-close {
-      flex-shrink: 0; margin-right: 12px;
-      color: #6B7280; cursor: pointer;
-    }
-    #smart-app-banner .sab-close:hover { color: #374151; }
+    #smart-app-banner .sab-close { flex-shrink:0; margin-right:12px; color:#6B7280; cursor:pointer; }
+    #smart-app-banner .sab-close:hover { color:#374151; }
 
-    #smart-app-banner .sab-icon {
-      width: 60px; height: 60px; border-radius: 12px;
-      margin-right: 12px; flex-shrink: 0;
-    }
+    #smart-app-banner .sab-icon { width:60px; height:60px; border-radius:12px; margin-right:12px; flex-shrink:0; }
 
-    #smart-app-banner .sab-info {
-      flex: 1; overflow: hidden;
-    }
+    #smart-app-banner .sab-info { flex:1; overflow:hidden; }
     #smart-app-banner .sab-title {
-      margin: 0; font-size: 17px; font-weight: 600; color: #111827;
-      line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      margin:0; font-size:17px; font-weight:600; color:#111827;
+      line-height:1.2; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
     }
     #smart-app-banner .sab-subtitle {
-      margin: 0; font-size: 13px; color: #4B5563;
-      line-height: 1.2; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      margin:0; font-size:13px; color:#4B5563;
+      line-height:1.2; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
     }
 
     #smart-app-banner .sab-button {
-      flex-shrink: 0; background: #007AFF; color: #fff;
-      font-size: 15px; font-weight: 600;
-      padding: 6px 14px; border-radius: 16px;
-      text-decoration: none; white-space: nowrap;
-      margin-left: 12px; transition: background .2s;
+      flex-shrink:0; background:#007AFF; color:#fff;
+      font-size:15px; font-weight:600;
+      padding:6px 14px; border-radius:16px;
+      text-decoration:none; white-space:nowrap;
+      margin-left:12px; transition:background .2s;
     }
-    #smart-app-banner .sab-button:hover { background: #0066DD; }
+    #smart-app-banner .sab-button:hover { background:#0066DD; }
+
+    /* Navbar */
+    header {
+      position:fixed; top:var(--banner-height); left:0; right:0; width:100%;
+      background:#fff; border-bottom:1px solid #E5E7EB; z-index:40;
+      transition:top .3s;
+    }
+    @media(min-width:1024px){ header{ top:0!important;} }
+
+    /* Hero mobile adjustments */
+    .hero-mobile {
+      padding-top: 128px;    /* pushed way down on mobile */
+      padding-bottom: 51px;  /* 3/4 of previous ~68px */
+    }
+    @media(min-width:1024px){
+      .hero-mobile { padding-top: 48px; padding-bottom: 56px; }
+    }
   </style>
 </head>
 
@@ -117,23 +108,29 @@
   </header>
 
   <!-- Hero Section -->
-  <section class="pt-48 pb-56 bg-blue-100 relative overflow-visible lg:pt-32 lg:pb-48">
+  <section class="hero-mobile bg-blue-100 relative overflow-visible lg:pt-48 lg:pb-56">
     <div class="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row items-start lg:items-center justify-between">
       <div class="lg:w-1/2">
         <h1 class="text-4xl sm:text-5xl font-bold mb-4">Find Your Thing</h1>
         <p class="text-lg sm:text-xl mb-6">
-          Discover student-led clubs, startups, events, and more — all in one place.
+          Discover student‑led clubs, startups, events, and more — all in one place.
         </p>
-        <a href="#get-started" class="bg-blue-600 text-white px-6 py-3 rounded-full shadow hover:bg-blue-700 transition">
+        <a href="#get-started"
+           class="inline-flex items-center bg-blue-600 text-white font-semibold px-6 py-3 rounded-full hover:bg-blue-700 transition">
           Try Activity Hub
+          <i class="fas fa-external-link-alt ml-2 lg:hidden"></i>
         </a>
       </div>
     </div>
-    <div class="hidden lg:block absolute right-[200px] bottom-[-100px] z-20">
-      <img src="https://i.imgur.com/yqvPSWf.png" alt="Phone Mockup" class="w-[300px] rotate-[15deg]" />
+    <!-- Rotated mobile phone -->
+    <div class="block lg:hidden mt-8 z-10">
+      <img src="https://i.imgur.com/yqvPSWf.png" alt="Phone Mockup"
+           class="mx-auto w-[220px] rotate-[15deg]" />
     </div>
-    <div class="block lg:hidden mt-12 z-10">
-      <img src="https://i.imgur.com/yqvPSWf.png" alt="Phone Mockup" class="mx-auto w-[220px]" />
+    <!-- Desktop phone -->
+    <div class="hidden lg:block absolute right-[200px] bottom-[-100px] z-20">
+      <img src="https://i.imgur.com/yqvPSWf.png" alt="Phone Mockup"
+           class="w-[300px] rotate-[15deg]" />
     </div>
   </section>
 
@@ -153,17 +150,17 @@
         <div class="p-6 bg-white rounded-xl shadow hover:shadow-md transition">
           <div class="text-3xl mb-2">📤</div>
           <h3 class="font-semibold mb-2">Post</h3>
-          <p class="text-gray-600">Are you a student leader with a club, startup, or side project? Share it on Activity Hub in just a few steps — no coding, no hassle.</p>
+          <p class="text-gray-600">Share your club, startup, or side project in just a few steps—no coding required.</p>
         </div>
         <div class="p-6 bg-white rounded-xl shadow hover:shadow-md transition">
           <div class="text-3xl mb-2">🔍</div>
           <h3 class="font-semibold mb-2">Explore</h3>
-          <p class="text-gray-600">Browse dozens of student-led clubs, startups, and projects. Look for the blue badge — it means the listing is officially recognized by your school.</p>
+          <p class="text-gray-600">Browse student-led organizations, startups, and projects—badge indicates school recognition.</p>
         </div>
         <div class="p-6 bg-white rounded-xl shadow hover:shadow-md transition">
           <div class="text-3xl mb-2">🔔</div>
           <h3 class="font-semibold mb-2">Stay Notified</h3>
-          <p class="text-gray-600">Follow your favorite clubs, businesses, or projects and get notified when they host events, post updates, or share new content.</p>
+          <p class="text-gray-600">Follow favorites and receive updates on events, posts, and new content.</p>
         </div>
       </div>
     </div>
@@ -175,7 +172,7 @@
     <ol class="list-decimal list-inside space-y-4 text-lg max-w-prose mx-auto text-gray-700">
       <li><strong>Create an Account</strong></li>
       <li><strong>Verify Your Student Email</strong></li>
-      <li><strong>Start Exploring & Following</strong> your favorite clubs, startups, or other student-led initiatives.</li>
+      <li><strong>Start Exploring & Following</strong> your favorite student-led initiatives.</li>
     </ol>
   </section>
 
@@ -204,12 +201,9 @@
       }
 
       window.addEventListener('DOMContentLoaded', () => setBanner(true));
-
       banner.querySelector('.sab-close').addEventListener('click', () => {
-        dismissed = true;
-        setBanner(false);
+        dismissed = true; setBanner(false);
       });
-
       window.addEventListener('scroll', () => {
         if (dismissed) return;
         const y = window.pageYOffset;
@@ -219,6 +213,5 @@
       });
     })();
   </script>
-
 </body>
 </html>
