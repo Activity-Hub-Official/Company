@@ -8,7 +8,6 @@
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-
   <!-- Inter Font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
@@ -17,36 +16,51 @@
     #smart-app-banner { display: flex; font-family: 'Inter', sans-serif; }
     @media (min-width: 1024px) { #smart-app-banner { display: none !important; } }
 
-    /* Push content down when banner is visible */
-    body { padding-top: 48px; }
+    /* Glass effect + sizing */
+    #smart-app-banner {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      padding: 12px 16px;
+      background: rgba(255,255,255,0.4);
+      backdrop-filter: saturate(180%) blur(10px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      z-index: 10000;
+      align-items: center;
+    }
+
+    /* Push content down by banner height (~104px) */
+    body { padding-top: 104px; }
     @media (min-width: 1024px) { body { padding-top: 0; } }
+
+    /* Navbar offset */
+    header { transition: top 0.3s; }
   </style>
 </head>
 <body class="bg-white text-gray-800 dark:text-white overflow-x-hidden">
 
-  <!-- Modern Smart App Banner -->
-  <div id="smart-app-banner" class="fixed inset-x-0 top-0 z-50 flex items-center bg-white shadow-md px-4 py-2">
-    <button class="sab-close text-gray-400 hover:text-gray-600 mr-3" aria-label="Close">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+  <!-- Modern Glass Smart App Banner -->
+  <div id="smart-app-banner">
+    <button class="sab-close text-gray-400 hover:text-gray-600 mr-4" aria-label="Close">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
         <path stroke-linecap="round" stroke-linejoin="round"
               d="M6 18L18 6M6 6l12 12"/>
       </svg>
     </button>
     <img src="https://i.imgur.com/DNoJrbI.png" alt="Activity Hub icon"
-         class="w-10 h-10 rounded-lg mr-3 flex-shrink-0" />
+         class="w-20 h-20 rounded-lg mr-4 flex-shrink-0" />
     <div class="flex-1 overflow-hidden">
-      <p class="text-sm font-semibold text-gray-900 truncate">Activity Hub</p>
-      <p class="text-xs text-gray-500 truncate">Discover student‑led innovation</p>
+      <p class="text-base font-semibold text-gray-900 truncate">Activity Hub</p>
+      <p class="text-sm text-gray-500 truncate">Discover student‑led innovation</p>
     </div>
     <a href="https://apps.apple.com/app/idYOUR_APP_ID"
-       class="ml-3 inline-block bg-blue-600 text-white text-sm font-semibold px-4 py-1.5 rounded-full hover:bg-blue-700 transition">
+       class="ml-4 inline-block bg-[#007AFF] text-white text-base font-semibold px-5 py-2 rounded-full hover:bg-opacity-90 transition">
       Get
     </a>
   </div>
 
   <!-- Sticky Navbar -->
-  <header class="fixed top-[48px] lg:top-0 left-0 w-full bg-white border-b border-gray-200 z-40">
+  <header id="main-nav" class="fixed top-[104px] lg:top-0 left-0 w-full bg-white bg-opacity-90 border-b border-gray-200 z-40">
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center font-inter">
       <h1 class="text-xl font-bold text-blue-600">Activity Hub</h1>
       <nav class="space-x-6 text-sm font-medium text-gray-700">
@@ -141,8 +155,8 @@
     document.querySelector('#smart-app-banner .sab-close')
       .addEventListener('click', () => {
         document.getElementById('smart-app-banner').style.display = 'none';
-        document.body.style.paddingTop = window.innerWidth < 1024 ? '0' : '';
-        document.querySelector('header').style.top = window.innerWidth < 1024 ? '0' : '';
+        document.body.style.paddingTop = '0';
+        document.getElementById('main-nav').style.top = '0';
       });
   </script>
 </body>
