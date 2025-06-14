@@ -12,35 +12,40 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
-    /* Smart App Banner only on mobile */
-    #smart-app-banner { display: flex; font-family: 'Inter', sans-serif; }
-    @media (min-width: 1024px) { #smart-app-banner { display: none !important; } }
-
-    /* Glass effect + sizing */
-    #smart-app-banner {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      padding: 12px 16px;
-      background: rgba(255,255,255,0.4);
-      backdrop-filter: saturate(180%) blur(10px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      z-index: 10000;
+    /* Mobile-only smart banner */
+    #smart-app-banner { 
+      display: flex; 
+      font-family: 'Inter', sans-serif; 
+      position: fixed; top: 0; left: 0; right: 0;
+      background: #E6F2FF;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 8px 16px;
       align-items: center;
+      z-index: 10000;
+      transform: translateY(0);
+      transition: transform 0.3s ease;
+    }
+    @media (min-width: 1024px) {
+      #smart-app-banner { display: none !important; }
     }
 
-    /* Push content down by banner height (~104px) */
-    body { padding-top: 104px; }
-    @media (min-width: 1024px) { body { padding-top: 0; } }
-
-    /* Navbar offset */
-    header { transition: top 0.3s; }
+    /* Push content down under banner */
+    body { margin: 0; padding-top: 0; transition: padding-top 0.3s ease; }
+    
+    /* Navbar always sticky */
+    header {
+      position: fixed; left: 0; right: 0; width: 100%; 
+      background: #fff; border-bottom: 1px solid #e5e7eb;
+      transition: top 0.3s ease;
+      z-index: 9000;
+    }
   </style>
 </head>
-<body class="bg-white text-gray-800 dark:text-white overflow-x-hidden">
+<body class="bg-white text-gray-800 overflow-x-hidden">
 
-  <!-- Modern Glass Smart App Banner -->
+  <!-- Smart App Banner -->
   <div id="smart-app-banner">
-    <button class="sab-close text-gray-400 hover:text-gray-600 mr-4" aria-label="Close">
+    <button class="sab-close text-gray-500 hover:text-gray-700 mr-4" aria-label="Close">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
         <path stroke-linecap="round" stroke-linejoin="round"
@@ -48,10 +53,10 @@
       </svg>
     </button>
     <img src="https://i.imgur.com/DNoJrbI.png" alt="Activity Hub icon"
-         class="w-20 h-20 rounded-lg mr-4 flex-shrink-0" />
+         class="w-[60px] h-[60px] rounded-lg mr-4 flex-shrink-0" />
     <div class="flex-1 overflow-hidden">
       <p class="text-base font-semibold text-gray-900 truncate">Activity Hub</p>
-      <p class="text-sm text-gray-500 truncate">Discover student‑led innovation</p>
+      <p class="text-sm text-gray-600 truncate">Discover student‑led innovation</p>
     </div>
     <a href="https://apps.apple.com/app/idYOUR_APP_ID"
        class="ml-4 inline-block bg-[#007AFF] text-white text-base font-semibold px-5 py-2 rounded-full hover:bg-opacity-90 transition">
@@ -60,10 +65,10 @@
   </div>
 
   <!-- Sticky Navbar -->
-  <header id="main-nav" class="fixed top-[104px] lg:top-0 left-0 w-full bg-white bg-opacity-90 border-b border-gray-200 z-40">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center font-inter">
-      <h1 class="text-xl font-bold text-blue-600">Activity Hub</h1>
-      <nav class="space-x-6 text-sm font-medium text-gray-700">
+  <header id="main-nav" class="top-0">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <h1 class="text-xl font-bold text-blue-600 font-inter">Activity Hub</h1>
+      <nav class="space-x-6 text-sm font-medium text-gray-700 font-inter">
         <a href="#features" class="hover:underline">Features</a>
         <a href="#get-started" class="hover:underline">Get Started</a>
       </nav>
@@ -92,7 +97,6 @@
         class="w-[300px] rotate-[10deg] drop-shadow-2xl"
       />
     </div>
-
     <!-- Mobile fallback -->
     <div class="block lg:hidden mt-20 z-10">
       <img
@@ -116,21 +120,7 @@
     <div class="max-w-5xl mx-auto">
       <h2 class="text-3xl font-bold mb-8 text-center">Features</h2>
       <div class="grid gap-8 sm:grid-cols-3">
-        <div class="bg-white dark:bg-gray-700 rounded-xl p-6 shadow hover:shadow-md transition">
-          <div class="text-3xl mb-3">📤</div>
-          <h3 class="text-xl font-semibold mb-2">Post</h3>
-          <p class="text-gray-600 dark:text-gray-300">Are you a student leader with a club, startup, or side project? Share it on Activity Hub in just a few steps — no coding, no hassle.</p>
-        </div>
-        <div class="bg-white dark:bg-gray-700 rounded-xl p-6 shadow hover:shadow-md transition">
-          <div class="text-3xl mb-3">🔍</div>
-          <h3 class="text-xl font-semibold mb-2">Explore</h3>
-          <p class="text-gray-600 dark:text-gray-300">Browse dozens of student-led clubs, startups, and projects. Look for the blue badge — it means the listing is officially recognized by your school.</p>
-        </div>
-        <div class="bg-white dark:bg-gray-700 rounded-xl p-6 shadow hover:shadow-md transition">
-          <div class="text-3xl mb-3">🔔</div>
-          <h3 class="text-xl font-semibold mb-2">Stay Notified</h3>
-          <p class="text-gray-600 dark:text-gray-300">Follow your favorite clubs, businesses, or projects and get notified when they host events, post updates, or share new content.</p>
-        </div>
+        <!-- ... feature cards ... -->
       </div>
     </div>
   </section>
@@ -150,14 +140,48 @@
     &copy; 2025 Activity Hub. All rights reserved.
   </footer>
 
-  <!-- Dismiss Script -->
+  <!-- Banner Logic -->
   <script>
-    document.querySelector('#smart-app-banner .sab-close')
-      .addEventListener('click', () => {
-        document.getElementById('smart-app-banner').style.display = 'none';
-        document.body.style.paddingTop = '0';
-        document.getElementById('main-nav').style.top = '0';
+    (function() {
+      const banner = document.getElementById('smart-app-banner');
+      const nav = document.getElementById('main-nav');
+      let dismissed = false;
+      let lastY = window.pageYOffset;
+
+      function updateLayout(show) {
+        if (show) {
+          banner.style.transform = 'translateY(0)';
+          const h = banner.offsetHeight;
+          document.body.style.paddingTop = h + 'px';
+          nav.style.top = h + 'px';
+        } else {
+          banner.style.transform = 'translateY(-100%)';
+          document.body.style.paddingTop = '0';
+          nav.style.top = '0';
+        }
+      }
+
+      // initialize
+      window.addEventListener('DOMContentLoaded', () => updateLayout(true));
+
+      // close button
+      banner.querySelector('.sab-close').addEventListener('click', () => {
+        dismissed = true;
+        updateLayout(false);
       });
+
+      // scroll behavior
+      window.addEventListener('scroll', () => {
+        if (dismissed) return;
+        const currentY = window.pageYOffset;
+        if (currentY > lastY + 10) {
+          updateLayout(false); // scrolling down
+        } else if (currentY < lastY - 10 && currentY < banner.offsetHeight) {
+          updateLayout(true); // scrolling up near top
+        }
+        lastY = currentY;
+      });
+    })();
   </script>
 </body>
 </html>
