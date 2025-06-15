@@ -57,7 +57,7 @@
     /* Navbar */
     header {
       position:fixed; top:var(--banner-height); left:0; right:0; width:100%;
-      background:#fff; border-bottom:1px solid #E5E7EB; z-index:40;
+      background:#fff; border-bottom:1px solid #E5E7EB; z-index:60;
       transition:top .3s;
     }
     @media(min-width:1024px){ header{ top:0!important;} }
@@ -96,9 +96,28 @@
   <header id="main-nav">
     <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
       <img src="https://i.imgur.com/DNoJrbI.png" alt="Activity Hub logo" class="h-8 w-8" />
-      <nav class="space-x-6 text-sm font-medium text-gray-700">
-        <a href="#features" class="hover:underline">Features</a>
-        <a href="#get-started" class="hover:underline">Get Started</a>
+
+      <!-- Desktop links -->
+      <nav id="desktop-nav" class="hidden lg:flex space-x-6 text-base font-medium text-gray-700">
+        <a href="#organization" class="hover:underline">Organization</a>
+        <a href="#partners"     class="hover:underline">Partners</a>
+        <a href="#careers"      class="hover:underline">Careers</a>
+        <a href="#news"         class="hover:underline">News</a>
+      </nav>
+
+      <!-- Mobile hamburger -->
+      <button id="menu-button" class="lg:hidden flex items-center text-base text-gray-700 focus:outline-none">
+        <span class="mr-2">Menu</span>
+        <i class="fas fa-bars fa-lg"></i>
+      </button>
+    </div>
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-gray-200">
+      <nav class="px-2 pt-2 pb-4 space-y-1">
+        <a href="#organization" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">Organization</a>
+        <a href="#partners"     class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">Partners</a>
+        <a href="#careers"      class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">Careers</a>
+        <a href="#news"         class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">News</a>
       </nav>
     </div>
   </header>
@@ -129,7 +148,7 @@
   </section>
 
   <!-- Why Activity Hub -->
-  <section class="py-20 px-6 max-w-4xl mx-auto">
+  <section id="organization" class="py-20 px-6 max-w-4xl mx-auto">
     <h2 class="text-3xl font-bold mb-4 text-center">Why Activity Hub?</h2>
     <p class="text-lg text-center max-w-prose mx-auto">
       Activity Hub isn’t just another club directory—it’s the first engagement platform that shows what’s really happening on campus. Clubs, startups, side projects, events—it’s all here. We make it easy for people to find what’s going on and get involved. The result? A campus that feels more connected, more creative, and more like a community.
@@ -141,8 +160,8 @@
     <div class="max-w-5xl mx-auto">
       <h2 class="text-3xl font-bold mb-8 text-center">Features</h2>
       <div class="grid gap-8 grid-cols-1 sm:grid-cols-2">
-        <!-- Post feature -->
-        <div class="p-6 bg-white rounded-2xl shadow hover:shadow-lg transition flex flex-col items-center">
+        <!-- Post -->
+        <div class="p-6 bg-white rounded-2xl shadow flex flex-col items-center">
           <div class="w-24 h-24 rounded-full bg-blue-50 flex items-center justify-center mb-4">
             <i class="fas fa-upload text-2xl text-blue-600"></i>
           </div>
@@ -151,18 +170,18 @@
             Are you a student leader with a club, startup, or side project? Share it on Activity Hub in just a few steps.
           </p>
         </div>
-        <!-- Explore feature -->
-        <div class="p-6 bg-white rounded-2xl shadow hover:shadow-lg transition flex flex-col items-center">
+        <!-- Explore -->
+        <div class="p-6 bg-white rounded-2xl shadow flex flex-col items-center">
           <div class="w-24 h-24 rounded-full bg-blue-50 flex items-center justify-center mb-4">
             <i class="fas fa-search text-2xl text-blue-600"></i>
           </div>
           <h3 class="font-semibold text-xl mb-2 text-center">Explore</h3>
           <p class="text-gray-600 text-center">
-            Browse dozens of student-led clubs, startups, and projects. Whether you’re just curious or ready to get involved, it’s all in one place — with every group’s socials neatly organized so you never have to dig around.
+            Browse dozens of student-run clubs, businesses, and projects, with all socials in one spot, so you never have to dig around.
           </p>
         </div>
-        <!-- Verified Listings feature -->
-        <div class="p-6 bg-white rounded-2xl shadow hover:shadow-lg transition flex flex-col items-center">
+        <!-- Verified Listings -->
+        <div class="p-6 bg-white rounded-2xl shadow flex flex-col items-center">
           <div class="w-24 h-24 rounded-full bg-blue-50 flex items-center justify-center mb-4">
             <i class="fas fa-check-circle text-2xl text-blue-600"></i>
           </div>
@@ -171,8 +190,8 @@
             See a blue badge? That means the listing is officially recognized by your university. Others are independent or working toward recognition.
           </p>
         </div>
-        <!-- Stay Notified feature -->
-        <div class="p-6 bg-white rounded-2xl shadow hover:shadow-lg transition flex flex-col items-center">
+        <!-- Stay Notified -->
+        <div class="p-6 bg-white rounded-2xl shadow flex flex-col items-center">
           <div class="w-24 h-24 rounded-full bg-blue-50 flex items-center justify-center mb-4">
             <i class="fas fa-bell text-2xl text-blue-600"></i>
           </div>
@@ -195,12 +214,31 @@
     </ol>
   </section>
 
+  <!-- Built with purpose -->
+  <section id="purpose" class="py-20 px-6 bg-blue-50">
+    <h2 class="text-3xl font-bold mb-4 text-center">Built with purpose</h2>
+    <p class="text-lg max-w-prose mx-auto text-gray-700 text-center">
+      Activity Hub is a student-led initiative created to fix a real gap in campus life. Most platforms only list officially approved clubs — and nothing else. We built Activity Hub to highlight everything students are working on: businesses, side projects, and creative work that often get overlooked. Development is supported by grants and donations from people like you who believe in giving students space to be seen, supported, and connected.
+    </p>
+    <div class="text-center mt-6">
+      <a href="/donate" class="inline-flex items-center border-2 border-blue-600 text-blue-600 font-semibold px-6 py-3 rounded-full hover:bg-blue-600 hover:text-white transition">
+        Donate or Sponsor Us
+      </a>
+    </div>
+  </section>
+
   <!-- Footer -->
   <footer class="bg-gray-900 text-white py-12">
     <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
       <div class="flex flex-col items-center md:items-start">
         <img src="https://i.imgur.com/DNoJrbI.png" alt="Activity Hub logo" class="h-8 mb-4">
-        <p class="text-sm text-gray-400">&copy; 2025 Activity Hub. All rights reserved.</p>
+        <div class="flex space-x-6 mb-4">
+          <a href="https://www.instagram.com/activity_hub_official/" class="text-white hover:text-pink-300" aria-label="Instagram"><i class="fab fa-instagram text-2xl"></i></a>
+          <a href="https://x.com/Activity_Hub_X" class="text-white hover:text-blue-300" aria-label="Twitter"><i class="fab fa-twitter text-2xl"></i></a>
+          <a href="https://www.youtube.com/@Activity-Hub-Official" class="text-white hover:text-red-400" aria-label="YouTube"><i class="fab fa-youtube text-2xl"></i></a>
+          <a href="https://www.tiktok.com/@activity_hub_official" class="text-white hover:text-gray-200" aria-label="TikTok"><i class="fab fa-tiktok text-2xl"></i></a>
+          <a href="https://www.linkedin.com/company/activity-hub-official/" class="text-white hover:text-blue-300" aria-label="LinkedIn"><i class="fab fa-linkedin text-2xl"></i></a>
+        </div>
       </div>
       <div>
         <h3 class="font-semibold text-lg mb-4">Company</h3>
@@ -229,28 +267,10 @@
         </ul>
       </div>
     </div>
-    <div class="mt-8 border-t border-gray-700 pt-6">
-      <div class="max-w-7xl mx-auto px-6 flex justify-center space-x-6">
-        <a href="https://www.instagram.com/activity_hub_official/" class="text-gray-400 hover:text-pink-500" aria-label="Instagram">
-          <i class="fab fa-instagram fa-lg"></i>
-        </a>
-        <a href="https://x.com/Activity_Hub_X" class="text-gray-400 hover:text-blue-400" aria-label="X (Twitter)">
-          <i class="fab fa-twitter fa-lg"></i>
-        </a>
-        <a href="https://www.youtube.com/@Activity-Hub-Official" class="text-gray-400 hover:text-red-600" aria-label="YouTube">
-          <i class="fab fa-youtube fa-lg"></i>
-        </a>
-        <a href="https://www.tiktok.com/@activity_hub_official" class="text-gray-400 hover:text-black" aria-label="TikTok">
-          <i class="fab fa-tiktok fa-lg"></i>
-        </a>
-        <a href="https://www.linkedin.com/company/activity-hub-official/" class="text-gray-400 hover:text-blue-700" aria-label="LinkedIn">
-          <i class="fab fa-linkedin fa-lg"></i>
-        </a>
-      </div>
-    </div>
+    <div class="mt-8 text-center text-sm text-gray-400">&copy; 2025 Activity Hub. All rights reserved.</div>
   </footer>
 
-  <!-- Banner Logic -->
+  <!-- Banner & Menu Toggle Logic -->
   <script>
     (function() {
       const banner = document.getElementById('smart-app-banner');
@@ -277,6 +297,11 @@
         if (y > lastY + 10) setBanner(false);
         else if (y < lastY - 10 && y < 50) setBanner(true);
         lastY = y;
+      });
+
+      // Mobile menu toggle
+      document.getElementById('menu-button').addEventListener('click', () => {
+        document.getElementById('mobile-menu').classList.toggle('hidden');
       });
     })();
   </script>
