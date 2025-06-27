@@ -14,7 +14,7 @@
   <meta property="og:description" content="Discover student-led clubs, startups, events, and more — all in one place." />
   <meta property="og:image" content="https://i.imgur.com/56XhIRS.png" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://yourdomain.com" />
+  <meta property="og:url" content="https://activity-hub-official.github.io" />
 
   <!-- Tailwind, Inter, Font Awesome -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -30,6 +30,7 @@
       transition: padding-top .3s;
     }
     @media(min-width:1024px){ body { padding-top:0!important; } }
+
     /* Smart App Banner */
     #smart-app-banner {
       display: flex;
@@ -67,15 +68,6 @@
       transition:top .3s;
     }
     @media(min-width:1024px){ header{ top:0!important;} }
-
-    /* Hero mobile adjustments */
-    .hero-mobile {
-      padding-top: 128px;
-      padding-bottom: 51px;
-    }
-    @media(min-width:1024px){
-      .hero-mobile { padding-top: 48px; padding-bottom: 56px; }
-    }
   </style>
 </head>
 
@@ -95,7 +87,7 @@
       <p class="sab-title">Activity Hub</p>
       <p class="sab-subtitle">Discover student‑led innovation</p>
     </div>
-    <a href="https://apps.apple.com/app/idYOUR_APP_ID" class="sab-button">Get</a>
+    <a href="https://activity-hub-official.github.io/Mobile/" class="sab-button">Get</a>
   </div>
 
   <!-- Navbar -->
@@ -106,9 +98,25 @@
       <!-- Desktop links -->
       <nav id="desktop-nav" class="hidden lg:flex space-x-6 text-base font-medium text-gray-700">
         <a href="#organization" class="hover:underline">Organization</a>
-        <a href="#partners"     class="hover:underline">Partners</a>
-        <a href="#careers"      class="hover:underline">Careers</a>
-        <a href="#news"         class="hover:underline">News</a>
+
+        <!-- Partners dropdown -->
+        <div class="relative group">
+          <button class="flex items-center hover:underline focus:outline-none">
+            Partners
+            <i class="fas fa-chevron-down ml-1 text-sm transition-transform duration-300 group-hover:rotate-180"></i>
+          </button>
+          <div class="absolute left-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg
+                      opacity-0 invisible group-hover:opacity-100 group-hover:visible
+                      transform translate-y-2 group-hover:translate-y-0
+                      transition-all duration-300 z-50">
+            <a href="#partners-universities" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Universities</a>
+            <a href="#partners-sponsors" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Sponsors</a>
+            <a href="#partners-collaborators" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Collaborators</a>
+          </div>
+        </div>
+
+        <a href="#careers" class="hover:underline">Careers</a>
+        <a href="#news" class="hover:underline">News</a>
       </nav>
 
       <!-- Mobile hamburger -->
@@ -117,13 +125,28 @@
         <i class="fas fa-bars fa-lg"></i>
       </button>
     </div>
+
     <!-- Mobile menu -->
     <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-gray-200">
       <nav class="px-2 pt-2 pb-4 space-y-1">
         <a href="#organization" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">Organization</a>
-        <a href="#partners"     class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">Partners</a>
-        <a href="#careers"      class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">Careers</a>
-        <a href="#news"         class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">News</a>
+
+        <!-- Mobile Partners accordion -->
+        <div>
+          <button id="mobile-partners-button"
+                  class="w-full flex justify-between items-center px-3 py-2 text-base font-medium text-gray-700 rounded-md hover:bg-gray-100 focus:outline-none">
+            Partners
+            <i id="mobile-partners-chevron" class="fas fa-chevron-down transition-transform duration-300"></i>
+          </button>
+          <div id="mobile-partners-menu" class="hidden pl-6 space-y-1">
+            <a href="#partners-universities" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100">Universities</a>
+            <a href="#partners-sponsors" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100">Sponsors</a>
+            <a href="#partners-collaborators" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-gray-100">Collaborators</a>
+          </div>
+        </div>
+
+        <a href="#careers" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">Careers</a>
+        <a href="#news" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">News</a>
       </nav>
     </div>
   </header>
@@ -272,12 +295,13 @@
     <div class="mt-8 text-center text-sm text-gray-400">&copy; 2025 Activity Hub. All rights reserved.</div>
   </footer>
 
-  <!-- Banner & Menu Toggle Logic -->
+  <!-- Banner, Menu & Dropdown Logic -->
   <script>
     (function() {
       const banner = document.getElementById('smart-app-banner');
       const nav = document.getElementById('main-nav');
       let dismissed = false, lastY = window.pageYOffset;
+
       function setBanner(show) {
         if (window.innerWidth < 1024) {
           banner.style.transform = show ? 'translateY(0)' : 'translateY(-100%)';
@@ -289,6 +313,7 @@
           document.body.style.paddingTop = '0';
         }
       }
+
       window.addEventListener('DOMContentLoaded', () => setBanner(true));
       banner.querySelector('.sab-close').addEventListener('click', () => {
         dismissed = true; setBanner(false);
@@ -301,9 +326,17 @@
         lastY = y;
       });
 
-      // Mobile menu toggle
+      // Mobile main menu toggle
       document.getElementById('menu-button').addEventListener('click', () => {
         document.getElementById('mobile-menu').classList.toggle('hidden');
+      });
+
+      // Mobile Partners submenu toggle
+      document.getElementById('mobile-partners-button').addEventListener('click', () => {
+        const submenu = document.getElementById('mobile-partners-menu');
+        const chevron = document.getElementById('mobile-partners-chevron');
+        submenu.classList.toggle('hidden');
+        chevron.classList.toggle('rotate-180');
       });
     })();
   </script>
