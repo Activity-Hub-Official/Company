@@ -4,12 +4,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Activity Hub — Campus Engagement Simplified</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="https://i.imgur.com/awyizaX.png" />
+
   <!-- Open Graph -->
   <meta property="og:title" content="Activity Hub — Campus Engagement Simplified" />
   <meta property="og:description" content="Connect student organizations, events, research groups, and administrators—all in one place. Empower your campus community with real-time discovery and collaboration." />
   <meta property="og:image" content="https://i.imgur.com/awyizaX.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://yourdomain.com" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Font Awesome -->
@@ -40,7 +50,8 @@
           <i class="fas fa-bars fa-lg"></i>
         </button>
       </div>
-      <!-- Mobile menu with slide-down/up animation -->
+
+      <!-- Mobile menu with animation -->
       <div
         id="mobile-menu"
         class="fixed inset-0 bg-white z-20 p-6 flex-col space-y-6 md:hidden
@@ -81,25 +92,47 @@
             Empower your campus community with real-time discovery and collaboration.
           </p>
           <div class="flex gap-4 justify-center md:justify-start">
-            <a href="#features" class="px-6 py-3 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-100 transition">Try Now</a>
-            <button id="open-demo-modal" class="px-6 py-3 border-2 border-white text-white rounded-lg hover:bg-white hover:text-blue-600 transition">Request Demo</button>
+            <a href="#features" class="px-6 py-3 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-100 transition">
+              Try Now
+            </a>
+            <button
+              id="open-demo-modal"
+              class="px-6 py-3 border-2 border-white text-white rounded-lg hover:bg-white hover:text-blue-600 transition"
+            >
+              Request Demo
+            </button>
           </div>
         </div>
-        <img src="https://i.imgur.com/yqvPSWf.png" alt="Activity Hub on phone"
-             class="mx-auto w-56 md:w-72 lg:w-80 h-auto mt-6 md:mt-0 transform rotate-12" />
+        <img
+          src="https://i.imgur.com/yqvPSWf.png"
+          alt="Activity Hub on phone"
+          class="mx-auto w-56 md:w-72 lg:w-80 h-auto mt-6 md:mt-0 transform rotate-12"
+        />
       </div>
+
       <!-- Demo Modal -->
       <div id="demo-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 hidden z-30">
         <div class="bg-white rounded-2xl max-w-md w-full p-6 relative">
           <button id="close-demo-modal" class="absolute top-4 right-4 text-gray-600 hover:text-gray-800">
-            <i class="fas fa-times fa-lg"></i></button>
+            <i class="fas fa-times fa-lg"></i>
+          </button>
           <h3 class="text-2xl font-bold mb-4">Demo Requests</h3>
-          <p class="mb-4">Our demo is for student leaders or official university representatives who can bring Activity Hub to campus.</p>
-          <p class="mb-6">If that’s not you, copy the link below and share it with someone who is:</p>
+          <p class="mb-4">
+            Our demo is for student leaders or official university representatives who can bring Activity Hub to campus.
+          </p>
+          <p class="mb-6">
+            If that’s not you, copy the link below and share it with someone who is:
+          </p>
           <div class="flex items-center space-x-2">
-            <input id="demo-link" readonly value="https://yourdomain.com/request-demo.html"
-                   class="flex-1 px-4 py-2 border rounded-xl" />
-            <button id="copy-demo-link" class="px-4 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700">Copy Link</button>
+            <input
+              id="demo-link"
+              readonly
+              value="https://yourdomain.com/request-demo.html"
+              class="flex-1 px-4 py-2 border rounded-xl"
+            />
+            <button id="copy-demo-link" class="px-4 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700">
+              Copy Link
+            </button>
           </div>
           <p id="copy-feedback" class="mt-2 text-green-600 opacity-0">Link copied!</p>
         </div>
@@ -115,14 +148,20 @@
         <div class="space-y-4">
           <h3 class="text-xl font-semibold text-gray-800">Overview</h3>
           <p class="text-lg text-gray-600">
-            Activity Hub brings everything you need to get involved on campus into one place. Whether you’re looking to join new clubs, discover upcoming events, or collaborate on research projects, Activity Hub simplifies your campus experience.
+            Activity Hub brings everything you need to get involved on campus into one place.
+            Whether you’re looking to join new clubs, discover upcoming events, or collaborate on research projects,
+            Activity Hub simplifies your campus experience.
           </p>
           <p class="text-lg text-gray-600">
-            With personalized recommendations, real-time updates, and seamless peer collaboration, staying connected and engaged has never been easier.
+            With personalized recommendations, real-time updates, and seamless peer collaboration,
+            staying connected and engaged has never been easier.
           </p>
         </div>
-        <video src="https://i.imgur.com/VIOT2ei.mp4" autoplay loop muted playsinline
-               class="w-full rounded-2xl shadow-lg mx-auto"></video>
+        <video
+          src="https://i.imgur.com/VIOT2ei.mp4"
+          autoplay loop muted playsinline
+          class="w-full rounded-2xl shadow-lg mx-auto"
+        ></video>
       </div>
     </section>
 
@@ -257,9 +296,9 @@
   <!-- FOOTER -->
   <footer class="bg-[#00172E] text-white mt-12">
     <div class="max-w-7xl mx-auto px-6 lg:px-8 py-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8">
-      <!-- Logo & Social -->
+      <!-- Footer logo now matches favicon -->
       <div class="flex flex-col items-start space-y-4">
-        <a href="#"><img src="https://i.imgur.com/yqvPSWf.png" alt="Activity Hub logo" class="h-8"></a>
+        <a href="#"><img src="https://i.imgur.com/awyizaX.png" alt="Activity Hub logo" class="h-8"></a>
         <div class="flex space-x-4">
           <a href="#" class="hover:text-gray-100"><i class="fab fa-twitter fa-lg"></i></a>
           <a href="#" class="hover:text-gray-100"><i class="fab fa-linkedin fa-lg"></i></a>
