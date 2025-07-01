@@ -4,6 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Activity Hub — Campus Engagement Simplified</title>
+  <!-- Open Graph -->
+  <meta property="og:title" content="Activity Hub — Campus Engagement Simplified" />
+  <meta property="og:description" content="Connect student organizations, events, research groups, and administrators—all in one place. Empower your campus community with real-time discovery and collaboration." />
+  <meta property="og:image" content="https://i.imgur.com/awyizaX.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://yourdomain.com" />
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Font Awesome -->
@@ -86,21 +92,14 @@
       <div id="demo-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 hidden z-30">
         <div class="bg-white rounded-2xl max-w-md w-full p-6 relative">
           <button id="close-demo-modal" class="absolute top-4 right-4 text-gray-600 hover:text-gray-800">
-            <i class="fas fa-times fa-lg"></i>
-          </button>
+            <i class="fas fa-times fa-lg"></i></button>
           <h3 class="text-2xl font-bold mb-4">Demo Requests</h3>
-          <p class="mb-4">
-            Our demo is for student leaders or official university representatives who can bring Activity Hub to campus.
-          </p>
-          <p class="mb-6">
-            If that’s not you, copy the link below and share it with someone who is:
-          </p>
+          <p class="mb-4">Our demo is for student leaders or official university representatives who can bring Activity Hub to campus.</p>
+          <p class="mb-6">If that’s not you, copy the link below and share it with someone who is:</p>
           <div class="flex items-center space-x-2">
             <input id="demo-link" readonly value="https://yourdomain.com/request-demo.html"
                    class="flex-1 px-4 py-2 border rounded-xl" />
-            <button id="copy-demo-link" class="px-4 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700">
-              Copy Link
-            </button>
+            <button id="copy-demo-link" class="px-4 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700">Copy Link</button>
           </div>
           <p id="copy-feedback" class="mt-2 text-green-600 opacity-0">Link copied!</p>
         </div>
