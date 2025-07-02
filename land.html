@@ -3,14 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Activity Hub — Campus Engagement Simplified</title>
+
+  <!-- Page title -->
+  <title>Activity Hub: An Open Source Social Engagement Platform</title>
 
   <!-- Favicon -->
   <link rel="icon" href="https://i.imgur.com/awyizaX.png" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Activity Hub — Campus Engagement Simplified" />
-  <meta property="og:description" content="Connect student organizations, events, research groups, and administrators—all in one place. Empower your campus community with real-time discovery and collaboration." />
+  <meta property="og:title" content="Activity Hub: An Open Source Social Engagement Platform" />
+  <meta property="og:description" content="Activity Hub is an open source platform that brings student organizations, events, and campus resources together in real time—empowering students and staff to discover, engage, and collaborate seamlessly." />
   <meta property="og:image" content="https://i.imgur.com/56XhIRS.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -19,6 +21,7 @@
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://i.imgur.com/56XhIRS.png" />
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -50,8 +53,6 @@
           <i class="fas fa-bars fa-lg"></i>
         </button>
       </div>
-
-      <!-- Mobile menu with animation -->
       <div
         id="mobile-menu"
         class="fixed inset-0 bg-white z-20 p-6 flex-col space-y-6 md:hidden
@@ -95,19 +96,13 @@
             <a href="#features" class="px-6 py-3 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-100 transition">
               Try Now
             </a>
-            <button
-              id="open-demo-modal"
-              class="px-6 py-3 border-2 border-white text-white rounded-lg hover:bg-white hover:text-blue-600 transition"
-            >
+            <button id="open-demo-modal" class="px-6 py-3 border-2 border-white text-white rounded-lg hover:bg-white hover:text-blue-600 transition">
               Request Demo
             </button>
           </div>
         </div>
-        <img
-          src="https://i.imgur.com/yqvPSWf.png"
-          alt="Activity Hub on phone"
-          class="mx-auto w-56 md:w-72 lg:w-80 h-auto mt-6 md:mt-0 transform rotate-12"
-        />
+        <img src="https://i.imgur.com/yqvPSWf.png" alt="Activity Hub on phone"
+             class="mx-auto w-56 md:w-72 lg:w-80 h-auto mt-6 md:mt-0 transform rotate-12" />
       </div>
 
       <!-- Demo Modal -->
@@ -124,12 +119,7 @@
             If that’s not you, copy the link below and share it with someone who is:
           </p>
           <div class="flex items-center space-x-2">
-            <input
-              id="demo-link"
-              readonly
-              value="https://yourdomain.com/request-demo.html"
-              class="flex-1 px-4 py-2 border rounded-xl"
-            />
+            <input id="demo-link" readonly value="https://yourdomain.com/request-demo.html" class="flex-1 px-4 py-2 border rounded-xl" />
             <button id="copy-demo-link" class="px-4 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700">
               Copy Link
             </button>
@@ -148,20 +138,10 @@
         <div class="space-y-4">
           <h3 class="text-xl font-semibold text-gray-800">Overview</h3>
           <p class="text-lg text-gray-600">
-            Activity Hub brings everything you need to get involved on campus into one place.
-            Whether you’re looking to join new clubs, discover upcoming events, or collaborate on research projects,
-            Activity Hub simplifies your campus experience.
-          </p>
-          <p class="text-lg text-gray-600">
-            With personalized recommendations, real-time updates, and seamless peer collaboration,
-            staying connected and engaged has never been easier.
+            Activity Hub brings everything you need to get involved on campus into one place...
           </p>
         </div>
-        <video
-          src="https://i.imgur.com/VIOT2ei.mp4"
-          autoplay loop muted playsinline
-          class="w-full rounded-2xl shadow-lg mx-auto"
-        ></video>
+        <video src="https://i.imgur.com/VIOT2ei.mp4" autoplay loop muted playsinline class="w-full rounded-2xl shadow-lg mx-auto"></video>
       </div>
     </section>
 
@@ -171,6 +151,7 @@
         <h2 class="text-3xl font-bold">Student‑Focused Features</h2>
       </div>
       <div class="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Feature cards -->
         <div class="p-6 bg-white rounded-2xl shadow-lg">
           <i class="fas fa-users fa-2x text-blue-600 mb-4"></i>
           <h3 class="text-xl font-semibold mb-2">Discover Organizations</h3>
@@ -178,7 +159,9 @@
         </div>
         <div class="p-6 bg-white rounded-2xl shadow-lg">
           <i class="fas fa-calendar-check fa-2x text-blue-600 mb-4"></i>
-          <h3 class="text-xl font-semibold mb-2">Events & Reminders</h3>
+          <h3 class="text-xl font-semibold mb-2">
+            Events & Reminders
+          </h3>
           <p class="text-gray-600">RSVP and get automatic reminders.</p>
         </div>
         <div class="p-6 bg-white rounded-2xl shadow-lg">
@@ -200,6 +183,7 @@
         <h2 class="text-3xl font-bold">How Students Use Activity Hub</h2>
       </div>
       <div class="max-w-4xl mx-auto px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Steps -->
         <div class="space-y-4 text-center">
           <div class="w-16 h-16 bg-blue-100 rounded-full mx-auto flex items-center justify-center">
             <i class="fas fa-sign-in-alt text-blue-600 text-2xl"></i>
@@ -262,6 +246,7 @@
         <h2 class="text-3xl font-bold">Trusted By</h2>
       </div>
       <div class="max-w-6xl mx-auto px-6 lg:px-8 flex flex-wrap justify-center gap-12">
+        <!-- Logos -->
         <div class="flex flex-col items-center">
           <div class="w-32 h-32 bg-white rounded-full overflow-hidden flex items-center justify-center shadow-lg">
             <img src="https://i.imgur.com/dLLRXS4.jpeg" alt="St. John's University VIC" class="w-full h-full object-cover">
@@ -296,7 +281,6 @@
   <!-- FOOTER -->
   <footer class="bg-[#00172E] text-white mt-12">
     <div class="max-w-7xl mx-auto px-6 lg:px-8 py-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-8">
-      <!-- Footer logo now matches favicon -->
       <div class="flex flex-col items-start space-y-4">
         <a href="#"><img src="https://i.imgur.com/awyizaX.png" alt="Activity Hub logo" class="h-8"></a>
         <div class="flex space-x-4">
@@ -305,7 +289,6 @@
           <a href="#" class="hover:text-gray-100"><i class="fab fa-facebook fa-lg"></i></a>
         </div>
       </div>
-      <!-- Product -->
       <div>
         <h5 class="text-xl font-semibold mb-4">Product</h5>
         <ul class="space-y-2 text-gray-300">
@@ -314,7 +297,6 @@
           <li><a href="#demo"     class="hover:text-gray-100">Request Demo</a></li>
         </ul>
       </div>
-      <!-- Community -->
       <div>
         <h5 class="text-xl font-semibold mb-4">Community</h5>
         <ul class="space-y-2 text-gray-300">
@@ -323,7 +305,6 @@
           <li><a href="/docs"  class="hover:text-gray-100">Developer Docs</a></li>
         </ul>
       </div>
-      <!-- Organization -->
       <div>
         <h5 class="text-xl font-semibold mb-4">Organization</h5>
         <ul class="space-y-2 text-gray-300">
@@ -333,7 +314,6 @@
           <li><a href="/assets" class="hover:text-gray-100">Brand Assets</a></li>
         </ul>
       </div>
-      <!-- Privacy & Safety -->
       <div>
         <h5 class="text-xl font-semibold mb-4">Privacy &amp; Safety</h5>
         <ul class="space-y-2 text-gray-300">
